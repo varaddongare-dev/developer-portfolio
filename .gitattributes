@@ -1,0 +1,17 @@
+# Set default behavior to automatically handle line endings gracefully across OS platforms
+* text=auto
+
+# Explicitly mark source files to ensure they normalize to standard line feeds (LF) on commit
+*.html text
+*.css text
+*.js text
+*.json text
+*.md text
+
+# Denote binary files to prevent Git from accidentally modifying their byte architectures
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.mp3 binary
