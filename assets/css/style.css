@@ -1,0 +1,941 @@
+/*
+ * Copyright (c) 2026 Varad. All rights reserved.
+ * Permission granted for educational modifications.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;900&family=Noto+Sans+JP:wght@300;700;900&family=Space+Grotesk:wght@400;700&display=swap');
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #070708;
+    color: #e5e5e7;
+    font-family: 'Space Grotesk', sans-serif;
+    overflow-x: hidden;
+}
+
+/* =================================================================
+ * GLOBAL HYPERLINK ISOLATION & ACCENT PROMPTS
+ * ================================================================= */
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+/* Targets true body-text inline anchors exclusively—shields layout titles and button layouts */
+#main-content p a,
+#main-content .project-details-dossier a:not(.git-redirect-btn),
+#main-content .redirect-container a:not(.animated-btn),
+a[href*="mailto"], 
+a[href*="github.com"] {
+    color: #dfb76c !important;
+    text-decoration: none !important;
+    border-bottom: 1px dashed rgba(223, 183, 108, 0.4) !important;
+    padding-bottom: 2px !important;
+    transition: color 0.3s ease, border-color 0.3s ease !important;
+}
+
+#main-content p a:hover,
+#main-content .project-details-dossier a:not(.git-redirect-btn):hover,
+#main-content .redirect-container a:not(.animated-btn):hover,
+a[href*="mailto"]:hover, 
+a[href*="github.com"]:hover {
+    color: #ffffff !important;
+    border-bottom-style: solid !important;
+    border-color: #ffffff !important;
+}
+
+/* =================================================================
+ * PRELOADER & GUN BARREL TRANSITION ENGINE
+ * ================================================================= */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+#gun-barrel-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.preloader-content-wrapper {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.preloader-title {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.8rem;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    color: #dfb76c;
+    margin-bottom: 25px;
+    text-shadow: 0 0 10px rgba(223, 183, 108, 0.1);
+}
+
+.code-card {
+    background-color: #0e0f11;
+    border: 1px solid #1c1e22;
+    border-radius: 4px;
+    padding: 20px;
+    width: 320px;
+    font-family: 'Courier New', Courier, monospace;
+    color: #8a8d93;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.code-card header {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 15px;
+}
+
+#skip-intro-btn {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    z-index: 10000;
+    background: #0e0f11;
+    border: 1px solid #1c1e22;
+    color: #5a5d64;
+    padding: 10px 20px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#skip-intro-btn:hover {
+    border-color: #dfb76c;
+    color: #dfb76c;
+    box-shadow: 0 0 15px rgba(223, 183, 108, 0.1);
+}
+
+body.no-scroll {
+    overflow: hidden !important;
+    height: 100vh !important;
+}
+
+.circle { width: 10px; height: 10px; border-radius: 50%; }
+.red { background-color: #ff5f56; }
+.yellow { background-color: #dfb76c; }
+.green { background-color: #222; }
+.orange-text { color: #dfb76c; }
+.blue-text { color: #8a8d93; }
+
+#main-content {
+    opacity: 0;
+    transform: translateY(40px);
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+/* =================================================================
+ * CORE NAVIGATION SYSTEM
+ * ================================================================= */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 0;
+    border-bottom: 1px solid #1c1e22;
+    color: #5a5d64;
+    font-size: 0.8rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    width: 100%;
+    box-sizing: border-box;
+}
+.nav-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    flex-grow: 1;
+    margin: 0 20px;
+    
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #5a5d64;
+    padding: 6px 16px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    border-radius: 2px;
+    white-space: nowrap;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: #dfb76c;
+    background-color: rgba(28, 30, 34, 0.4);
+    
+}
+.time-stamp {
+    flex-shrink: 0;
+    min-width: 200px;
+}
+.cd-player-widget {
+    flex-shrink: 0;
+    
+}
+/* =================================================================
+ * HIGH-IMPACT MAIN DISPLAY HEADERS & OVERRIDES
+ * ================================================================= */
+.hero-section {
+    margin: 14vh 0;
+}
+
+.line-mask {
+    overflow: hidden;
+    margin-bottom: -10px;
+}
+
+h1.reveal-title, 
+.hero-section h1, 
+.hero-section .reveal-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(3.8rem, 11.5vw, 12rem);
+    font-weight: 700;
+    line-height: 0.9;
+    margin: 0;
+    letter-spacing: -0.03em;
+    color: #ffffff !important; /* Overrides any unwanted link styling completely */
+    transform: translateY(100%);
+    border: none !important;
+    border-bottom: none !important;
+    text-decoration: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Re-enforce the signature gold middle line explicitly */
+.hero-section .line-mask:nth-child(2) h1.reveal-title,
+.hero-section .line-mask:nth-child(2) .reveal-title {
+    color: #dfb76c !important;
+    text-shadow: 0 0 40px rgba(223, 183, 108, 0.1) !important;
+}
+
+/* =================================================================
+ * SECTIONS & METRICS GRAPH SPECIFICATIONS
+ * ================================================================= */
+.metrics-section {
+    border-top: 1px solid #1c1e22;
+    padding-top: 45px;
+    margin-bottom: 12vh;
+}
+
+.metrics-header h2 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.6rem, 3.8vw, 3.2rem);
+    font-weight: bold;
+    letter-spacing: 0.02em;
+    color: #ffffff;
+    margin: 0 0 15px 0;
+    max-width: 85%;
+}
+
+.metrics-header p {
+    color: #5a5d64;
+    margin: 0 0 45px 0;
+    font-size: 1.05rem;
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.metric-card {
+    border-top: 1px solid #1c1e22;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.metric-label {
+    font-size: 0.7rem;
+    color: #5a5d64;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+}
+
+.metric-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+/* =================================================================
+ * HORIZONTAL MARQUEE TAPE INTERCEPTS
+ * ================================================================= */
+.marquee-section {
+    margin: 10vh 0;
+    border-top: 1px solid #1c1e22;
+    border-bottom: 1px solid #1c1e22;
+    padding: 25px 0;
+    background-color: #0b0c0e;
+}
+
+.marquee-wrapper {
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+}
+
+.marquee-content {
+    display: flex;
+    white-space: nowrap;
+    animation: moveMarquee 22s linear infinite;
+}
+
+.marquee-content span {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1c1e22;
+    margin-right: 50px;
+    letter-spacing: 0.05em;
+}
+
+@keyframes moveMarquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+}
+
+/* =================================================================
+ * CTAS & INTERACTIVE SYSTEM BUTTONS
+ * ================================================================= */
+.redirect-section {
+    margin: 16vh 0;
+    border-top: 1px solid #1c1e22;
+    padding-top: 65px;
+    display: flex;
+    justify-content: center;
+}
+
+.redirect-container {
+    text-align: center;
+    max-width: 580px;
+}
+
+.redirect-container p {
+    color: #5a5d64;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    margin-bottom: 45px;
+}
+
+.animated-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background-color: transparent;
+    color: #ffffff;
+    border: 1px solid #dfb76c;
+    padding: 16px 36px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    letter-spacing: 0.15em;
+    border-radius: 0px;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s ease;
+    z-index: 1;
+}
+
+.animated-btn .btn-arrow {
+    margin-left: 14px;
+    font-size: 1.1rem;
+    color: #dfb76c;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), color 0.4s ease;
+}
+
+.animated-btn::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #dfb76c;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: -1;
+    transform: translateY(0);
+}
+
+.animated-btn:hover {
+    color: #070708;
+    border-color: #dfb76c;
+}
+
+.animated-btn:hover::before {
+    transform: translateY(-100%);
+}
+
+.animated-btn:hover .btn-arrow {
+    transform: translateX(6px);
+    color: #070708;
+}
+
+/* =================================================================
+ * CORE GRID PORTFOLIO FRAMEWORKS
+ * ================================================================= */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background-color: #1c1e22;
+    margin: 12vh 0;
+}
+
+.portfolio-grid a {
+    display: flex;
+    height: 100%;
+}
+
+.grid-item {
+    background-color: #070708;
+    padding: 55px 35px;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+    transition: background-color 0.3s;
+}
+
+.grid-item:hover {
+    background-color: #0e0f11;
+}
+
+.grid-item h2 { 
+    font-family: 'Cinzel', serif;
+    font-size: 2.3rem; 
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    margin: 0 0 12px 0; 
+    color: #ffffff;
+    transition: color 0.3s ease;
+}
+
+.grid-item p { color: #5a5d64; font-size: 0.95rem; max-width: 360px; margin: 0; line-height: 1.6; }
+.tag { font-size: 0.7rem; color: #dfb76c; font-weight: bold; letter-spacing: 0.08em; }
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 45px 0;
+    border-top: 1px solid #1c1e22;
+    color: #383a3f;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+/* =================================================================
+ * SYSTEM CD AUDIO PLAYER COMPONENT
+ * ================================================================= */
+.cd-player-widget {
+    display: flex;
+    align-items: center;
+    background-color: #0e0f11;
+    border: 1px solid #1c1e22;
+    padding: 10px 18px;
+    border-radius: 0px;
+    gap: 15px;
+    width: 280px;
+    box-sizing: border-box;
+}
+
+.cd-deck {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.disc-media {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle, #dfb76c 8%, #070708 9%, #121315 35%, #dfb76c 36%, #121315 40%, #070708 70%);
+    border: 1px solid #1c1e22;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.disc-center-hole {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: #0e0f11;
+    border: 1px solid #dfb76c;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.disc-media.spinning {
+    animation: spinDisc 3.5s linear infinite;
+}
+
+@keyframes spinDisc {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.cd-metadata {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.track-marquee {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    background-color: #070708;
+    border: 1px solid #1c1e22;
+    padding: 3px 6px;
+    box-sizing: border-box;
+}
+
+#track-title-text {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 900;
+    color: #5a5d64;
+    letter-spacing: 0.1em;
+}
+
+.track-marquee.scrolling #track-title-text {
+    animation: scrollTrackName 7s linear infinite;
+    color: #dfb76c;
+}
+
+@keyframes scrollTrackName {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+.cd-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cd-control-btn {
+    background: transparent;
+    border: none;
+    color: #5a5d64;
+    font-size: 0.65rem;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.2s ease;
+}
+
+.cd-control-btn:hover {
+    color: #ffffff;
+}
+
+.status-indicator {
+    width: 6px;
+    height: 6px;
+    background-color: #1c1e22;
+    border-radius: 50%;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.status-indicator.active {
+    background-color: #dfb76c;
+    box-shadow: 0 0 8px #dfb76c;
+}
+
+.tag, .time-stamp, .nav-status, .metric-label, .marquee-content span, .status-badge {
+    font-family: 'Noto Sans JP', Arial, sans-serif !important;
+    letter-spacing: 0.1em;
+}
+
+/* =================================================================
+ * EXTENSIONS: CORE INTERACTIVE ACCORDION MECHANICS
+ * ================================================================= */
+.interactive-accordion-grid {
+    display: flex !important;
+    flex-direction: column;
+    gap: 1px;
+    background-color: #1c1e22;
+}
+
+.accordion-item {
+    min-height: auto !important;
+    padding: 0 !important; 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start !important;
+    cursor: pointer;
+    background-color: #070708;
+    transition: background-color 0.3s ease;
+}
+
+.accordion-trigger {
+    padding: 45px 35px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.accordion-item:hover .accordion-trigger {
+    background-color: #0e0f11;
+}
+
+.accordion-item:hover .accordion-trigger h2 {
+    color: #dfb76c;
+}
+
+.project-headline {
+    margin-top: 15px !important;
+    font-size: 1.15rem !important;
+    color: #8a8d93 !important;
+    max-width: 800px !important;
+    line-height: 1.6 !important;
+}
+
+.accordion-icon {
+    font-size: 1.2rem;
+    color: #5a5d64;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s ease;
+    display: inline-block;
+}
+
+.accordion-item.is-expanded .accordion-icon {
+    transform: rotate(45deg);
+    color: #dfb76c;
+}
+
+/* Status Badges */
+.status-badge {
+    font-size: 0.65rem;
+    padding: 3px 10px;
+    font-weight: 900;
+}
+.status-badge.active-work {
+    background-color: rgba(223, 183, 108, 0.15);
+    color: #dfb76c;
+    border: 1px solid rgba(223, 183, 108, 0.3);
+}
+.status-badge.secure-lock {
+    background-color: rgba(90, 93, 100, 0.15);
+    color: #8a8d93;
+    border: 1px solid rgba(90, 93, 100, 0.3);
+}
+
+/* Slide Drawer Elements */
+.accordion-content {
+    height: 0;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #090a0c;
+}
+
+.content-inner {
+    padding: 10px 35px 50px 35px;
+    border-top: 1px dashed #1c1e22;
+    box-sizing: border-box;
+}
+
+/* Grid Layout Splitting Panels */
+.project-details-dossier {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    margin-bottom: 40px;
+    margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+    .project-details-dossier {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+.dossier-block h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    color: #5a5d64;
+    letter-spacing: 0.15em;
+    margin: 0 0 15px 0;
+    font-weight: 900;
+}
+
+.dossier-block p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #a2a5ad;
+    margin: 0;
+}
+
+.dossier-block ul {
+    margin: 0;
+    padding-left: 18px;
+}
+
+.dossier-block li {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: #a2a5ad;
+    margin-bottom: 8px;
+}
+
+/* Link Actions Styles */
+.git-redirect-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background-color: transparent;
+    color: #dfb76c;
+    border: 1px solid rgba(223, 183, 108, 0.4);
+    padding: 14px 28px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    letter-spacing: 0.15em;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s ease;
+    z-index: 1;
+}
+
+.git-redirect-btn .btn-arrow {
+    margin-left: 12px;
+    font-size: 0.9rem;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.git-redirect-btn::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #dfb76c;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: -1;
+    transform: translateY(0);
+}
+
+.git-redirect-btn:hover {
+    color: #070708;
+    border-color: #dfb76c;
+}
+
+.git-redirect-btn:hover::before {
+    transform: translateY(-100%);
+}
+
+.git-redirect-btn:hover .btn-arrow {
+    transform: translate(3px, -3px);
+}
+
+/* =================================================================
+ * EXTENSIONS: TERMINAL RADAR INTERCEPT TRACER
+ * ================================================================= */
+.radar-scroll-module {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 6vh auto 4vh auto;
+    cursor: pointer;
+    width: fit-content;
+    padding: 15px 30px;
+    background-color: rgba(14, 15, 17, 0.4);
+    border: 1px solid #1c1e22;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.radar-scroll-module:hover {
+    border-color: #dfb76c;
+    background-color: #0e0f11;
+}
+
+.radar-console-text {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    color: #8a8d93;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.radar-console-text .system-prompt {
+    color: #dfb76c;
+    font-weight: bold;
+}
+
+.terminal-cursor {
+    color: #dfb76c;
+    font-weight: bold;
+    animation: blinkTerminalCursor 0.8s steps(2, start) infinite;
+}
+
+.radar-pulsing-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: dipRadarArrow 2s infinite ease-in-out;
+}
+
+@keyframes blinkTerminalCursor {
+    to { visibility: hidden; }
+}
+
+@keyframes dipRadarArrow {
+    0%, 100% {
+        transform: translateY(0);
+        opacity: 0.4;
+    }
+    50% {
+        transform: translateY(6px);
+        opacity: 1;
+    }
+}
+
+/* =================================================================
+ * EXTENSIONS: MOBILE RESPONSIVE OPTIMIZATION OVERRIDES
+ * ================================================================= */
+@media (max-width: 1024px) {
+    nav {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    .cd-player-widget {
+        width: 100%;
+        max-width: 320px;
+        margin-top: 5px;
+    }
+}
+
+@media (max-width: 768px) {
+    #main-content {
+        padding: 20px 15px;
+    }
+    nav {
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+        padding-bottom: 25px;
+    }
+    .nav-links {
+        display: flex;
+        width: 100%;
+        justify-content: flex-start;
+        margin-left: -15px;
+    }
+    .nav-links a {
+        margin: 0 15px 0 0;
+        font-size: 0.9rem;
+    }
+    .cd-player-widget {
+        width: 100%; 
+        max-width: 100%;
+    }
+    .reveal-title {
+        line-height: 1.0;
+        letter-spacing: -0.01em;
+    }
+    .metrics-grid {
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 16px;
+    }
+    .metric-value {
+        font-size: 1.4rem; 
+    }
+    .interactive-accordion-grid div[style*="flex-wrap"] {
+        padding: 20px 15px !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 12px !important;
+    }
+    .interactive-accordion-grid div[style*="flex-wrap"] span {
+        font-size: 0.8rem !important;
+    }
+    .interactive-accordion-grid div[style*="flex-wrap"] div[style*="Courier New"] {
+        font-size: 0.8rem !important;
+        width: 100%;
+        box-sizing: border-box;
+        word-break: break-word; 
+        white-space: normal !important;
+    }
+    .accordion-trigger {
+        padding: 30px 15px;
+    }
+    .grid-item h2 {
+        font-size: 1.6rem; 
+    }
+    .project-headline {
+        font-size: 1.0rem !important;
+    }
+    .content-inner {
+        padding: 10px 15px 40px 15px;
+    }
+    .accordion-trigger div[style*="display: flex"] {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 8px;
+    }
+    .git-redirect-btn {
+        width: 100%; 
+        box-sizing: border-box;
+    }
+    .radar-scroll-module {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 15px;
+    }
+    .radar-console-text {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 500px) {
+    #main-content h1, 
+    .reveal-title {
+        font-size: 3.2rem !important; 
+    }
+}

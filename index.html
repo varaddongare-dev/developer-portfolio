@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confidential Portfolio</title>
+    <link rel="stylesheet" href="assets/css/style.css?v=1.1">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2215%22 fill=%22%230e0f11%22/><text x=%2250%%22 y=%2265%%22 font-family=%22Courier New, monospace%22 font-weight=%22bold%22 font-size=%2242%22 fill=%22%23dfb76c%22 text-anchor=%22middle%22>007</text></svg>">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js" defer></script>
+    <script src="assets/js/script.js?v=1.1" defer></script>
+</head>
+<body>
+
+    <div id="preloader">
+        <canvas id="gun-barrel-canvas"></canvas>
+        <div class="preloader-content-wrapper">
+            <div class="preloader-title">CONFIDENTIAL PORTFOLIO</div>
+            <div class="code-card">
+                <header>
+                    <div class="circle red"></div>
+                    <div class="circle yellow"></div>
+                    <div class="circle green"></div>
+                </header>
+                <div class="typing-container">
+                    <span class="orange-text">.mainframe</span> {<br>
+                    &nbsp;&nbsp;uplink: <span class="blue-text">secure</span>;<br>
+                    &nbsp;&nbsp;protocol: <span class="blue-text">007</span>;<br>
+                    &nbsp;&nbsp;status: <span id="typing-text" style="color: #fff; font-weight: bold;"></span>;<br>
+                    }
+                </div>
+            </div>
+        </div>
+        <button id="skip-intro-btn">// BYPASS INTRO</button>
+    </div>
+
+    <div id="main-content" style="display: none; opacity: 0;">
+        <nav>
+            <div class="time-stamp">// ARCHITECTURE</div>
+            <div class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            
+            <div class="cd-player-widget">
+                <audio id="portfolio-audio" src="audio/01. Logos & Gunbarrel (Spectre Expanded Score).mp3" loop></audio>
+                <div class="cd-deck">
+                    <div id="cd-disc" class="disc-media">
+                        <div class="disc-center-hole"></div>
+                    </div>
+                </div>
+                <div class="cd-metadata">
+                    <div class="track-marquee">
+                        <span id="track-title-text">007 SPECTRE</span>
+                    </div>
+                    <div class="cd-controls">
+                        <button id="audio-toggle-btn" class="cd-control-btn">// PLAY INTERCEPT</button>
+                        <span id="cd-status-light" class="status-indicator"></span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <section class="hero-section">
+            <div class="line-mask">
+                <h1 class="reveal-title">AI & DATA</h1>
+            </div>
+            <div class="line-mask">
+                <h1 class="reveal-title">SYSTEMS</h1>
+            </div>
+            <div class="line-mask">
+                <h1 class="reveal-title">INTELLIGENCE</h1>
+            </div>
+        </section>
+
+        <section class="metrics-section target-fade">
+            <div class="metrics-header">
+                <h2>Data that speaks. AI that reasons. Software that ships.</h2>
+                <p>System configuration matrices and execution parameters.</p>
+            </div>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <span class="metric-label">SYSTEMS EXECUTION</span>
+                    <span class="metric-value">Asynchronous</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-label">CORE ENGINES</span>
+                    <span class="metric-value">C++ / Python</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-label">SYSTEM TELEMETRY</span>
+                    <span class="metric-value">Live Dash</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-label">AUTOMATION CORES</span>
+                    <span class="metric-value">Node / Webhooks</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="marquee-section target-fade">
+            <div class="marquee-wrapper">
+                <div class="marquee-content">
+                    <span>NODE.JS //</span><span>PYTHON //</span><span>C++ //</span><span>EXPRESS //</span><span>FLASK //</span><span>PANDAS //</span>
+                    <span>NODE.JS //</span><span>PYTHON //</span><span>C++ //</span><span>EXPRESS //</span><span>FLASK //</span><span>PANDAS //</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects-target" class="portfolio-grid interactive-accordion-grid">
+            
+            <div class="grid-item accordion-item target-slide">
+                <div class="accordion-trigger">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <span class="tag">AUTOMATION FRAMEWORK // 01</span>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <span class="status-badge active-work">CURRENTLY WORKING</span>
+                            <span class="accordion-icon">＋</span>
+                        </div>
+                    </div>
+                    <h2>SUPPORT-SYSTEMS-BOT</h2>
+                    <p class="project-headline">A hybrid asynchronous automated WhatsApp engine built on Node.js and Python architectures.</p>
+                </div>
+                
+                <div class="accordion-content">
+                    <div class="content-inner">
+                        <div class="project-details-dossier">
+                            <div class="dossier-block">
+                                <h3>SYSTEM OVERVIEW</h3>
+                                <p>An advanced, production-grade automation bot engineered to integrate live message parsing pipelines with Gemini API LLM layers. It leverages event-driven architecture to intercept incoming messages, parse structured commands via micro-services, and issue contextual, high-speed automated webhooks.</p>
+                            </div>
+                            <div class="dossier-block">
+                                <h3>TECHNICAL INTEGRATIONS</h3>
+                                <ul>
+                                    <li>Node.js / Express asynchronous event-driven core loops</li>
+                                    <li>Python webhooks management and data transformation models via Pandas</li>
+                                    <li>Native Axios pipeline integration for upstream Gemini API parsing</li>
+                                    <li>Secure local environment validation mechanisms via Dotenv layers</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <a href="https://www.github.com/varaddongare-dev/support-Systems-bot" target="_blank" class="git-redirect-btn">
+                            <span>LAUNCH REPOSITORY GATEWAY</span>
+                            <span class="btn-arrow">↗</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-item accordion-item target-slide">
+                <div class="accordion-trigger">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <span class="tag">SYSTEM TELEMETRY // 02</span>
+                        <span class="accordion-icon">＋</span>
+                    </div>
+                    <h2>DEVPULSE SYSTEM MONITOR</h2>
+                    <p class="project-headline">Real-time CPU and GPU low-level telemetry compiler dashboard written in Python.</p>
+                </div>
+                
+                <div class="accordion-content">
+                    <div class="content-inner">
+                        <div class="project-details-dossier">
+                            <div class="dossier-block">
+                                <h3>SYSTEM OVERVIEW</h3>
+                                <p>A high-performance hardware diagnostic application designed to pull active OS process maps, compute frequencies, and thermal metrics. Specially tuned to detect hardware throttling bottlenecks, analyze system locks, and read specific configuration logs.</p>
+                            </div>
+                            <div class="dossier-block">
+                                <h3>TECHNICAL INTEGRATIONS</h3>
+                                <ul>
+                                    <li>Direct hardware polling via internal kernel scripts and WMI structures</li>
+                                    <li>Comprehensive thermal monitoring parameters including PROCHOT register evaluation</li>
+                                    <li>Live CPU utilization plotting algorithms tracking thermal boundaries</li>
+                                    <li>Intel Core configuration and NVIDIA controller pipeline optimization maps</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <a href="https://www.github.com/varaddongare-dev/DevPulse-System-Monitor" target="_blank" class="git-redirect-btn">
+                            <span>LAUNCH REPOSITORY GATEWAY</span>
+                            <span class="btn-arrow">↗</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="redirect-section target-fade">
+            <div class="redirect-container">
+                <p>Explore full system technical architectures, private source repositories, and secure execution binaries.</p>
+                <a href="about.html" class="animated-btn">
+                    <span class="btn-text">DECRYPT SYSTEM DOSSIER</span>
+                    <span class="btn-arrow">→</span>
+                </a>
+            </div>
+        </section>
+
+        <footer>
+            <div>MIT-WPU PUNE // IN</div>
+            <div>© 2026 VARAD. ALL RIGHTS RESERVED.</div>
+        </footer>
+    </div>
+
+</body>
+</html>

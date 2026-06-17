@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About // Varad</title>
+    <link rel="stylesheet" href="assets/css/style.css?v=1.1">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2215%22 fill=%22%230e0f11%22/><text x=%2250%%22 y=%2265%%22 font-family=%22Courier New, monospace%22 font-weight=%22bold%22 font-size=%2242%22 fill=%22%23dfb76c%22 text-anchor=%22middle%22>007</text></svg>">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js" defer></script>
+    <script src="assets/js/script.js?v=1.1" defer></script>
+</head>
+</head>
+<body>
+
+    <div id="main-content" style="opacity: 1; transform: none; display: block;">
+        <nav>
+            <div class="time-stamp">VARAD // BIOGRAPHY</div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html" class="active">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            
+            <div class="cd-player-widget">
+                <audio id="portfolio-audio" src="audio/Adele - Skyfall.mp3" loop></audio>
+                <div class="cd-deck">
+                    <div id="cd-disc" class="disc-media">
+                        <div class="disc-center-hole"></div>
+                    </div>
+                </div>
+                <div class="cd-metadata">
+                    <div class="track-marquee">
+                        <span id="track-title-text">007</span>
+                    </div>
+                    <div class="cd-controls">
+                        <button id="audio-toggle-btn" class="cd-control-btn">// PLAY INTERCEPT</button>
+                        <span id="cd-status-light" class="status-indicator"></span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <section class="hero-section">
+            <div class="line-mask">
+                <h1 class="reveal-title" style="transform: translateY(0);">THE BIO DOSSIER</h1>
+            </div>
+        </section>
+
+        <section class="bio-content target-fade" style="margin-bottom: 2vh; border-top: 1px solid #1c1e22; padding-top: 40px;">
+            <p style="font-size: 1.8rem; line-height: 1.5; color: #ccc; max-width: 950px; font-weight: 300; margin: 0 0 25px 0;">
+                I am a specialized systems and automation developer completing an advanced computer applications track at <strong style="font-weight: 700; color: #dfb76c;">MIT World Peace University in Pune, India</strong>. My software ethos targets low-level execution pipelines, secure data parsing, and high-fidelity scripting.
+            </p>
+            <p style="font-size: 1.15rem; line-height: 1.7; color: #8a8d93; max-width: 850px; margin: 0;">
+                Prior to my current engineering focus, I established a robust technical foundation through my formal Bachelor of Computer Application degree. My core development architecture maps across event-driven automation frameworks, local asynchronous micro-services, and real-time hardware telemetry compilation.
+            </p>
+        </section>
+
+        <div class="radar-scroll-module target-fade" onclick="document.getElementById('projects-target').scrollIntoView({ behavior: 'smooth' })">
+            <div class="radar-console-text">
+                <span class="system-prompt">SYS //</span> <span id="radar-typewriter">INITIALIZING TARGET DECRYPT...</span><span class="terminal-cursor">|</span>
+            </div>
+            <div class="radar-pulsing-arrow">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 5V19M12 19L5 12M12 19L19 12" stroke="#dfb76c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+        </div>
+
+        <section class="marquee-section target-fade">
+            <div class="marquee-wrapper">
+                <div class="marquee-content">
+                    <span>NODE.JS //</span><span>PYTHON //</span><span>C++ //</span><span>EXPRESS //</span><span>FLASK //</span><span>PANDAS //</span>
+                    <span>NODE.JS //</span><span>PYTHON //</span><span>C++ //</span><span>EXPRESS //</span><span>FLASK //</span><span>PANDAS //</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects-target" class="portfolio-grid interactive-accordion-grid">
+            
+            <div style="background: #090a0c; border-bottom: 1px solid #1c1e22; padding: 20px 35px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px; width: 100%; box-sizing: border-box;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span class="status-indicator active" style="width: 8px; height: 8px; background-color: #dfb76c; border-radius: 50%; display: inline-block; box-shadow: 0 0 8px #dfb76c;"></span>
+                    <span style="font-size: 0.75rem; letter-spacing: 0.1em; color: #8a8d93; font-weight: bold; font-family: 'Noto Sans JP', sans-serif;">CURRENT ENVIRONMENT RUNTIME METRICS:</span>
+                </div>
+                <div style="font-size: 0.75rem; letter-spacing: 0.05em; color: #dfb76c; font-family: 'Courier New', monospace;">
+                    [ WEBPAGE STACK: Native JavaScript (ES6+) // HTML5 Canvas Engine // CSS3 Grid Flex // GSAP Cores // Lenis SmoothScroll ]
+                </div>
+            </div>
+            
+            <div class="grid-item accordion-item target-slide">
+                <div class="accordion-trigger">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <span class="tag">AUTOMATION FRAMEWORK // 01</span>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <span style="font-family: 'Courier New', monospace; font-size: 0.7rem; color: #dfb76c; border: 1px dashed rgba(223,183,108,0.4); padding: 2px 6px;">LANGS: Node.js / JavaScript / Python</span>
+                            <span class="status-badge active-work">CURRENTLY WORKING</span>
+                            <span class="accordion-icon">＋</span>
+                        </div>
+                    </div>
+                    <h2>SUPPORT-SYSTEMS-BOT</h2>
+                    <p class="project-headline">A hybrid asynchronous automated WhatsApp engine built on Node.js and Python architectures.</p>
+                </div>
+                
+                <div class="accordion-content">
+                    <div class="content-inner">
+                        <div class="project-details-dossier">
+                            <div class="dossier-block">
+                                <h3>SYSTEM OVERVIEW</h3>
+                                <p>An advanced, production-grade automation bot engineered to integrate live message parsing pipelines with Gemini API LLM layers. It leverages event-driven architecture to intercept incoming messages, parse structured commands via micro-services, and issue contextual, high-speed automated webhooks.</p>
+                            </div>
+                            <div class="dossier-block">
+                                <h3>TECHNICAL INTEGRATIONS</h3>
+                                <ul>
+                                    <li>Node.js / Express asynchronous event-driven core loops</li>
+                                    <li>Python webhooks management and data transformation models via Pandas</li>
+                                    <li>Native Axios pipeline integration for upstream Gemini API parsing</li>
+                                    <li>Secure local environment validation mechanisms via Dotenv layers</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <a href="https://www.github.com/varaddongare-dev/support-Systems-bot" target="_blank" class="git-redirect-btn">
+                            <span>LAUNCH REPOSITORY GATEWAY</span>
+                            <span class="btn-arrow">↗</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-item accordion-item target-slide">
+                <div class="accordion-trigger">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <span class="tag">SYSTEM TELEMETRY // 02</span>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <span style="font-family: 'Courier New', monospace; font-size: 0.7rem; color: #dfb76c; border: 1px dashed rgba(223,183,108,0.4); padding: 2px 6px;">LANG: Pure Python</span>
+                            <span class="accordion-icon">＋</span>
+                        </div>
+                    </div>
+                    <h2>DEVPULSE SYSTEM MONITOR</h2>
+                    <p class="project-headline">Real-time CPU and GPU low-level telemetry compiler dashboard written in Python.</p>
+                </div>
+                
+                <div class="accordion-content">
+                    <div class="content-inner">
+                        <div class="project-details-dossier">
+                            <div class="dossier-block">
+                                <h3>SYSTEM OVERVIEW</h3>
+                                <p>A high-performance hardware diagnostic application designed to pull active OS process maps, compute frequencies, and thermal metrics. Specially tuned to detect hardware throttling bottlenecks, analyze system locks, and read specific configuration logs.</p>
+                            </div>
+                            <div class="dossier-block">
+                                <h3>TECHNICAL INTEGRATIONS</h3>
+                                <ul>
+                                    <li>Direct hardware polling via internal kernel scripts and WMI structures</li>
+                                    <li>Comprehensive thermal monitoring parameters including PROCHOT register evaluation</li>
+                                    <li>Live CPU utilization plotting algorithms tracking thermal boundaries</li>
+                                    <li>Intel Core configuration and NVIDIA controller pipeline optimization maps</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <a href="https://www.github.com/varaddongare-dev/DevPulse-System-Monitor" target="_blank" class="git-redirect-btn">
+                            <span>LAUNCH REPOSITORY GATEWAY</span>
+                            <span class="btn-arrow">↗</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-item accordion-item target-slide">
+                <div class="accordion-trigger">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <span class="tag">SIMULATION LOGIC // 03</span>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <span style="font-family: 'Courier New', monospace; font-size: 0.7rem; color: #dfb76c; border: 1px dashed rgba(223,183,108,0.4); padding: 2px 6px;">LANGS: Python / Flask / JSON</span>
+                            <span class="accordion-icon">＋</span>
+                        </div>
+                    </div>
+                    <h2>GLADIATOR-S-ARENA</h2>
+                    <p class="project-headline">A web-based interactive mathematical runtime platform running via Flask servers.</p>
+                </div>
+                
+                <div class="accordion-content">
+                    <div class="content-inner">
+                        <div class="project-details-dossier">
+                            <div class="dossier-block">
+                                <h3>SYSTEM OVERVIEW</h3>
+                                <p>A rapid mathematical evaluation environment designed to compute variable states and transactional parameters. It renders clean, isolated routes allowing state vectors to transform synchronously without dropping server execution cycles.</p>
+                            </div>
+                            <div class="dossier-block">
+                                <h3>TECHNICAL INTEGRATIONS</h3>
+                                <ul>
+                                    <li>Python Flask modular application structures with clean environment separation</li>
+                                    <li>Dynamic JSON state transformation APIs communicating with web layers</li>
+                                    <li>Isolated configuration structures secured via custom deployment scripts</li>
+                                    <li>Low-latency response handling matrices computing data arrays instantly</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <a href="https://www.github.com/varaddongare-dev/Gladiator-s-Arena" target="_blank" class="git-redirect-btn">
+                            <span>LAUNCH REPOSITORY GATEWAY</span>
+                            <span class="btn-arrow">↗</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-item accordion-item target-slide">
+                <div class="accordion-trigger">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <span class="tag">LOW LEVEL GRAPHICS // 04</span>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <span style="font-family: 'Courier New', monospace; font-size: 0.7rem; color: #dfb76c; border: 1px dashed rgba(223,183,108,0.4); padding: 2px 6px;">LANG: Pure C++</span>
+                            <span class="status-badge secure-lock">CURRENTLY WORKING (PRIVATE)</span>
+                            <span class="accordion-icon">＋</span>
+                        </div>
+                    </div>
+                    <h2>SHADOWS-EDGE</h2>
+                    <p class="project-headline">A standalone compiled 2D rigid-body custom physics computation engine written in C++.</p>
+                </div>
+                
+                <div class="accordion-content">
+                    <div class="content-inner">
+                        <div class="project-details-dossier">
+                            <div class="dossier-block">
+                                <h3>SYSTEM OVERVIEW</h3>
+                                <p>A low-overhead, highly mathematical simulation engine engineered to compute explicit frame vectors and mechanical object boundaries from raw code blocks. It avoids third-party tracking overheads, running custom rendering calculations natively.</p>
+                            </div>
+                            <div class="dossier-block">
+                                <h3>TECHNICAL INTEGRATIONS</h3>
+                                <ul>
+                                    <li>Object collision mechanics optimized through custom geometric algorithms</li>
+                                    <li>Custom matrix calculation structures handling real-time frame transformations</li>
+                                    <li>Optimized runtime compilation memory bounds utilizing native pointers</li>
+                                    <li>Advanced vector acceleration modules computing complex physics loops</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <a href="https://www.github.com/varaddongare-dev/Shadows-Edge" target="_blank" class="git-redirect-btn">
+                            <span>LAUNCH REPOSITORY GATEWAY</span>
+                            <span class="btn-arrow">↗</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-item accordion-item target-slide full-width-accordion">
+                <div class="accordion-trigger">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <span class="tag">LAYOUT ARCHITECTURE // 05</span>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <span style="font-family: 'Courier New', monospace; font-size: 0.7rem; color: #dfb76c; border: 1px dashed rgba(223,183,108,0.4); padding: 2px 6px;">LANGS: JavaScript / HTML5 / Vite</span>
+                            <span class="accordion-icon">＋</span>
+                        </div>
+                    </div>
+                    <h2>ASTRO-BENTO-PORTFOLIO</h2>
+                    <p class="project-headline">A multi-frame responsive frontend layout compiling raw particle fields via HTML5 Canvas structures.</p>
+                </div>
+                
+                <div class="accordion-content">
+                    <div class="content-inner">
+                        <div class="project-details-dossier">
+                            <div class="dossier-block">
+                                <h3>SYSTEM OVERVIEW</h3>
+                                <p>A modern layout framework executing rich graphic canvas objects inside a ultra-fast, structured Vite compilation server. It maps design coordinates alongside clean spatial grid matrices to house data panels without generating browser performance drops.</p>
+                            </div>
+                            <div class="dossier-block">
+                                <h3>TECHNICAL INTEGRATIONS</h3>
+                                <ul>
+                                    <li>High refresh-rate requestAnimationFrame physics loops handling canvas objects</li>
+                                    <li>Compiled via modular Vite processing configurations for extreme production asset management</li>
+                                    <li>Advanced CSS structural calculations creating perfectly fluid dashboard tiles</li>
+                                    <li>Integrated layout mechanics tracking global scroll positions dynamically</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <a href="https://www.github.com/varaddongare-dev/Astro-Bento-Portfolio" target="_blank" class="git-redirect-btn">
+                            <span>LAUNCH REPOSITORY GATEWAY</span>
+                            <span class="btn-arrow">↗</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <footer>
+            <div>MIT-WPU PUNE // IN</div>
+            <div>© 2026 VARAD. ALL RIGHTS RESERVED.</div>
+        </footer>
+    </div>
+
+</body>
+</html>
