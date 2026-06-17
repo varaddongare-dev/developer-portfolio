@@ -1,0 +1,17 @@
+# =================================================================
+# SYSTEM FILTERS (Prevents local environment cache leaks)
+# =================================================================
+
+# VS Code local workspace state directories
+.vscode/
+
+# Windows system thumbnail caches
+Thumbs.db
+ehthumbs.db
+
+# macOS system folder attribute logs
+.DS_Store
+
+# Local server log arrays
+*.log
+npm-debug.log*
