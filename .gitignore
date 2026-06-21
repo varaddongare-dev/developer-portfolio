@@ -3,14 +3,11 @@
 # =================================================================
 
 # 📁 GLOBAL MEDIA & AUDIO LOCKS
-# *.mp3
-# *.wav
-# *.ogg
-# *.aac
-# *.flac
-# *.m4a
+# [PRODUCTION REMARK]: Audio blocks have been entirely removed 
+# to ensure Vercel can process compilation runtime assets.
 
 # 📁 LOCAL DEVELOPMENT DEPENDENCIES
+# Excludes bulky package installation matrices
 node_modules/
 jspm_packages/
 .pnpm-store/
@@ -20,6 +17,7 @@ yarn.lock
 pnpm-lock.yaml
 
 # 📁 COMPILATION & ENVIRONMENT CACHES
+# Shields private local runtime variables and IDE layout configs
 .env
 .env.local
 .env.*.local
