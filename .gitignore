@@ -1,17 +1,32 @@
 # =================================================================
-# SYSTEM FILTERS (Prevents local environment cache leaks)
+# VARAD PORTFOLIO REPOSITORY GATEWAY SECURITY MATRIX (.gitignore)
 # =================================================================
 
-# VS Code local workspace state directories
-.vscode/
+# 📁 GLOBAL MEDIA & AUDIO LOCKS
+# *.mp3
+# *.wav
+# *.ogg
+# *.aac
+# *.flac
+# *.m4a
 
-# Windows system thumbnail caches
-Thumbs.db
-ehthumbs.db
+# 📁 LOCAL DEVELOPMENT DEPENDENCIES
+node_modules/
+jspm_packages/
+.pnpm-store/
+.yarn/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
 
-# macOS system folder attribute logs
+# 📁 COMPILATION & ENVIRONMENT CACHES
+.env
+.env.local
+.env.*.local
 .DS_Store
-
-# Local server log arrays
-*.log
-npm-debug.log*
+Thumbs.db
+.vscode/
+.idea/
+dist/
+build/
+.cache/
