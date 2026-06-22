@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.add("no-scroll");
 
     // =================================================================
-    // 2. VIDEO TIMELINE & ACTIVE ENGAGEMENT ENGINE
+    // 2. VIDEO TIMELINE & SOUND SYNC CORE ENGINE (AMERICAN VENOM PIPELINE)
     // =================================================================
     function initializeSystemUplink(e) {
         if (systemUnlocked) return;
@@ -59,21 +59,34 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        // Initialize and fire hardware-accelerated video player asset
+        // 🟢 INTERACTION SYNCHRONIZATION: Fire American Venom immediately
+        if (audioTrack) {
+            audioTrack.muted = false;
+            audioTrack.volume = 0.45; // Clean, non-clipping balanced mix level
+            audioTrack.currentTime = 0; // Forces playback from the absolute start frame
+            
+            audioTrack.play()
+                .then(() => {
+                    console.log("Audio Track Sync: 'American Venom' deployed cleanly inside interaction loop.");
+                    setPlayerActiveUI();
+                    localStorage.setItem("portfolio-audio-active", "true");
+                })
+                .catch(err => {
+                    console.log("Audio engine gate blocked immediate track initialization:", err);
+                    setPlayerPassiveUI();
+                });
+        }
+
+        // 🟢 VISUAL PIPELINE: Launch intro video frames in parallel
         if (videoPlayer) {
             videoPlayer.style.display = "block";
             videoPlayer.currentTime = 0;
             
-            // Keep it muted initially to guarantee the browser accepts the video pipeline command
+            // Video component must remain muted to seamlessly pass mobile data-saving policies
             videoPlayer.muted = true; 
             
             videoPlayer.play().then(() => {
-                console.log("Visual pipeline active. Executing audio unblock...");
-                
-                // Instantly unmute now that the stream is verified. 
-                // Because this occurs within the click/tap chain, browser security flags drop!
-                videoPlayer.muted = false;
-                videoPlayer.volume = 0.90; 
+                console.log("Visual pipeline active. Syncing rendering parameters over audio master.");
                 
                 // TYPEWRITER DELAY OFFSET MATRIX
                 setTimeout(() => {
@@ -84,28 +97,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 }, 2200);
             }).catch(error => {
                 console.log("Hardware media pipeline stalled, forcing fallback stream:", error);
-                videoPlayer.muted = true;
-                videoPlayer.play().catch(() => {});
                 triggerExitSequence(); 
             });
 
-            // Fires the exact frame the RDR2 intro clip ends
+            // Fires the exact frame the video sequence finishes
             videoPlayer.onended = () => {
                 triggerExitSequence();
             };
         } else {
             triggerExitSequence();
-        }
-
-        // Fire background ambient score engine safely
-        if (audioTrack) {
-            const shouldBePlaying = localStorage.getItem("portfolio-audio-active") !== "false";
-            if (shouldBePlaying) {
-                audioTrack.play().then(() => {
-                    setPlayerActiveUI();
-                    localStorage.setItem("portfolio-audio-active", "true");
-                }).catch(() => {});
-            }
         }
     }
 
@@ -362,6 +362,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function initIsolatedAudioTrack() {
         if (audioTrack && audioBtn && cdDisc && statusLight && marqueeContainer) {
+            // Background site ambient level setting
             audioTrack.volume = 0.35;
 
             const shouldBePlaying = localStorage.getItem("portfolio-audio-active") === "true";
