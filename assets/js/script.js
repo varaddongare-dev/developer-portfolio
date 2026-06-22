@@ -65,6 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 onComplete: () => bootWall.remove()
             });
         }
+<<<<<<< HEAD
 // Initialize and fire hardware-accelerated video player asset
         if (videoPlayer) {
             videoPlayer.style.display = "block";
@@ -79,6 +80,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.log("Media pipeline active with native audio track.");
                 
                 // TYPEWRITER DELAY OFFSET MATRIX
+=======
+
+        // Initialize and fire hardware-accelerated video player asset
+        if (videoPlayer) {
+            videoPlayer.style.display = "block";
+            videoPlayer.volume = 0.95;
+            videoPlayer.currentTime = 0;
+            
+            videoPlayer.play().then(() => {
+                // TYPEWRITER DELAY OFFSET MATRIX: 
+                // Adjust this time window (ms) to match the point your video center-locks!
+>>>>>>> 9506adfa7603fb4d97d048308fc5de6730994ed8
                 setTimeout(() => {
                     if (!autoLoadTriggered) {
                         autoLoadTriggered = true;
@@ -86,6 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 }, 2200);
             }).catch(error => {
+<<<<<<< HEAD
                 console.log("Hardware media pipeline audio block fallback:", error);
                 
                 // FALLBACK EMERGENCY MODE: If the browser STILL blocks the audio, 
@@ -93,6 +107,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 videoPlayer.muted = true;
                 videoPlayer.play().catch(() => {});
                 triggerExitSequence(); 
+=======
+                console.log("Hardware media pipeline stalled:", error);
+                triggerExitSequence(); // Safety fallback bypass channel
+>>>>>>> 9506adfa7603fb4d97d048308fc5de6730994ed8
             });
 
             // NATIVE EVENT CAPTURE: Fires the frame the RDR2 intro clip ends
@@ -162,6 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(runTypewriter, typeSpeed);
     }
 
+<<<<<<< HEAD
     // =================================================================
     // 4. COORDINATED PAGE INCOMING REVEAL OVERLAY
     // =================================================================
@@ -169,17 +188,30 @@ document.addEventListener("DOMContentLoaded", () => {
         sessionStorage.setItem("rdr2IntroPlayed", "true");
         document.body.classList.remove("no-scroll");
         if (skipBtn) skipBtn.remove();
+=======
+ // =================================================================
+    // 4. COORDINATED PAGE OUTGOING INCOMING TRANSITION REVEAL (REFIXED)
+    // =================================================================
+    function triggerExitSequence() {
+        sessionStorage.setItem("rdr2IntroPlayed", "true");
+        
+        // Prevent flashing by forcing background matching before removal
+        if (preloader) preloader.style.background = "#000000"; 
+>>>>>>> 9506adfa7603fb4d97d048308fc5de6730994ed8
 
         // High-Contrast Red Dead 2 Glitch Impact Phase prior to screen drop
         if (preloaderContent) preloaderContent.classList.add("shattered-glitch");
 
         const masterTimeline = gsap.timeline({
             onComplete: () => {
+                document.body.classList.remove("no-scroll");
                 if (preloader) preloader.remove();
+                if (skipBtn) skipBtn.remove();
                 initializeCoreSiteFeatures();
             }
         });
 
+<<<<<<< HEAD
         // Hard crossfade drop straight out of video frame into primary content grid
         if (preloader) {
             masterTimeline.to(preloader, { opacity: 0, duration: 0.5, ease: "power2.out" }, "+=0.3");
@@ -191,6 +223,48 @@ document.addEventListener("DOMContentLoaded", () => {
         }, "-=0.2");
 
         masterTimeline.to(".reveal-title", { translateY: "0%", color: "#ffffff", duration: 1.0, ease: "power4.out", stagger: 0.12 }, "-=0.7");
+=======
+        // 1. Kill the typewriter container gracefully so it doesn't pop out
+        if (preloaderContent) {
+            masterTimeline.to(preloaderContent, {
+                opacity: 0,
+                duration: 0.2,
+                ease: "power1.out"
+            }, 0);
+        }
+
+        // 2. Explode the preloader layer using an aggressive horizontal split clip-path
+        // This stops the sudden black screen flash seen in Screen Recording 2026-06-21 191019.mp4
+        if (preloader) {
+            masterTimeline.to(preloader, {
+                clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%, 0% 100%, 100% 100%, 100% 100%, 0% 100%)",
+                // Alternate option: cinematic vertical shutter wipe
+                // clipPath: "polygon(0 0, 0 0, 0 100%, 0 100%, 100% 0, 100% 0, 100% 100%, 100% 100%)",
+                duration: 0.6,
+                ease: "power4.inOut"
+            }, 0.1);
+        }
+        
+        // 3. Smoothly slide up and fade in the portfolio layout concurrently
+        masterTimeline.to(mainContent, {
+            onStart: () => { 
+                if (mainContent) mainContent.style.display = "block"; 
+            },
+            opacity: 1, 
+            y: 0, 
+            duration: 0.8, 
+            ease: "power2.out"
+        }, "-=0.4");
+
+        // 4. Stagger your massive block titles out of their hidden overflow masks
+        masterTimeline.to(".reveal-title", { 
+            translateY: "0%", 
+            color: "#ffffff", 
+            duration: 0.8, 
+            ease: "power3.out", 
+            stagger: 0.1 
+        }, "-=0.5");
+>>>>>>> 9506adfa7603fb4d97d048308fc5de6730994ed8
     }
 
     function bypassPreloaderSequence() {
