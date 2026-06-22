@@ -1,12 +1,6 @@
 /**
  * Copyright (c) 2026 Varad. All rights reserved.
- * * PERMISSION NOTICE: 
- * You are free to modify, refactor, and edit this document for your personal 
- * learning and coding practice. You are encouraged to upload your customized 
- * versions to GitHub using your own unique design elements and custom layout effects. 
- * * RESTRICTION: 
- * Do not copy, re-use, or duplicate this exact comment block or claim this unmodified 
- * template source code directly as your own work.
+ * LICENSE: MIT
  */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -22,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const textElement = document.getElementById("typing-text");
     const bootWall = document.getElementById("system-boot-wall");
 
-    // Core Layout Audio Widgets (Overhauled to matching RDR2 Red Theme Styles)
+    // Core Layout Audio Widgets
     const audioTrack = document.getElementById("portfolio-audio");
     const audioBtn = document.getElementById("audio-toggle-btn");
     const cdDisc = document.getElementById("cd-disc");
@@ -33,7 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const introPlayed = sessionStorage.getItem("rdr2IntroPlayed") === "true";
 
     let lenisEngine = null;
-    let audioHasStarted = false;
     let autoLoadTriggered = false; 
     let systemUnlocked = false; 
 
@@ -57,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         systemUnlocked = true;
 
-        // Slide away interaction threat panel cleanly
+        // Slide away interaction panel cleanly
         if (bootWall) {
             gsap.to(bootWall, {
                 opacity: 0,
@@ -65,33 +58,24 @@ document.addEventListener("DOMContentLoaded", () => {
                 onComplete: () => bootWall.remove()
             });
         }
-<<<<<<< HEAD
-// Initialize and fire hardware-accelerated video player asset
-        if (videoPlayer) {
-            videoPlayer.style.display = "block";
-            
-            // CRITICAL AUDIO UNBLOCK CHANNELS:
-            videoPlayer.muted = false; // Forces the browser video track to unmute
-            videoPlayer.volume = 0.85;  // Calibrates a clean, heavy audio mix
-            videoPlayer.currentTime = 0;
-            
-            // Execute playback inside the direct user-click context window
-            videoPlayer.play().then(() => {
-                console.log("Media pipeline active with native audio track.");
-                
-                // TYPEWRITER DELAY OFFSET MATRIX
-=======
 
         // Initialize and fire hardware-accelerated video player asset
         if (videoPlayer) {
             videoPlayer.style.display = "block";
-            videoPlayer.volume = 0.95;
             videoPlayer.currentTime = 0;
             
+            // Keep it muted initially to guarantee the browser accepts the video pipeline command
+            videoPlayer.muted = true; 
+            
             videoPlayer.play().then(() => {
-                // TYPEWRITER DELAY OFFSET MATRIX: 
-                // Adjust this time window (ms) to match the point your video center-locks!
->>>>>>> 9506adfa7603fb4d97d048308fc5de6730994ed8
+                console.log("Visual pipeline active. Executing audio unblock...");
+                
+                // Instantly unmute now that the stream is verified. 
+                // Because this occurs within the click/tap chain, browser security flags drop!
+                videoPlayer.muted = false;
+                videoPlayer.volume = 0.90; 
+                
+                // TYPEWRITER DELAY OFFSET MATRIX
                 setTimeout(() => {
                     if (!autoLoadTriggered) {
                         autoLoadTriggered = true;
@@ -99,21 +83,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 }, 2200);
             }).catch(error => {
-<<<<<<< HEAD
-                console.log("Hardware media pipeline audio block fallback:", error);
-                
-                // FALLBACK EMERGENCY MODE: If the browser STILL blocks the audio, 
-                // we force it to play muted so the visual sequence doesn't freeze!
+                console.log("Hardware media pipeline stalled, forcing fallback stream:", error);
                 videoPlayer.muted = true;
                 videoPlayer.play().catch(() => {});
                 triggerExitSequence(); 
-=======
-                console.log("Hardware media pipeline stalled:", error);
-                triggerExitSequence(); // Safety fallback bypass channel
->>>>>>> 9506adfa7603fb4d97d048308fc5de6730994ed8
             });
 
-            // NATIVE EVENT CAPTURE: Fires the frame the RDR2 intro clip ends
+            // Fires the exact frame the RDR2 intro clip ends
             videoPlayer.onended = () => {
                 triggerExitSequence();
             };
@@ -127,7 +103,6 @@ document.addEventListener("DOMContentLoaded", () => {
             if (shouldBePlaying) {
                 audioTrack.play().then(() => {
                     setPlayerActiveUI();
-                    audioHasStarted = true;
                     localStorage.setItem("portfolio-audio-active", "true");
                 }).catch(() => {});
             }
@@ -180,7 +155,6 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(runTypewriter, typeSpeed);
     }
 
-<<<<<<< HEAD
     // =================================================================
     // 4. COORDINATED PAGE INCOMING REVEAL OVERLAY
     // =================================================================
@@ -188,31 +162,16 @@ document.addEventListener("DOMContentLoaded", () => {
         sessionStorage.setItem("rdr2IntroPlayed", "true");
         document.body.classList.remove("no-scroll");
         if (skipBtn) skipBtn.remove();
-=======
- // =================================================================
-    // 4. COORDINATED PAGE OUTGOING INCOMING TRANSITION REVEAL (REFIXED)
-    // =================================================================
-    function triggerExitSequence() {
-        sessionStorage.setItem("rdr2IntroPlayed", "true");
-        
-        // Prevent flashing by forcing background matching before removal
-        if (preloader) preloader.style.background = "#000000"; 
->>>>>>> 9506adfa7603fb4d97d048308fc5de6730994ed8
 
-        // High-Contrast Red Dead 2 Glitch Impact Phase prior to screen drop
         if (preloaderContent) preloaderContent.classList.add("shattered-glitch");
 
         const masterTimeline = gsap.timeline({
             onComplete: () => {
-                document.body.classList.remove("no-scroll");
                 if (preloader) preloader.remove();
-                if (skipBtn) skipBtn.remove();
                 initializeCoreSiteFeatures();
             }
         });
 
-<<<<<<< HEAD
-        // Hard crossfade drop straight out of video frame into primary content grid
         if (preloader) {
             masterTimeline.to(preloader, { opacity: 0, duration: 0.5, ease: "power2.out" }, "+=0.3");
         }
@@ -223,48 +182,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }, "-=0.2");
 
         masterTimeline.to(".reveal-title", { translateY: "0%", color: "#ffffff", duration: 1.0, ease: "power4.out", stagger: 0.12 }, "-=0.7");
-=======
-        // 1. Kill the typewriter container gracefully so it doesn't pop out
-        if (preloaderContent) {
-            masterTimeline.to(preloaderContent, {
-                opacity: 0,
-                duration: 0.2,
-                ease: "power1.out"
-            }, 0);
-        }
-
-        // 2. Explode the preloader layer using an aggressive horizontal split clip-path
-        // This stops the sudden black screen flash seen in Screen Recording 2026-06-21 191019.mp4
-        if (preloader) {
-            masterTimeline.to(preloader, {
-                clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%, 0% 100%, 100% 100%, 100% 100%, 0% 100%)",
-                // Alternate option: cinematic vertical shutter wipe
-                // clipPath: "polygon(0 0, 0 0, 0 100%, 0 100%, 100% 0, 100% 0, 100% 100%, 100% 100%)",
-                duration: 0.6,
-                ease: "power4.inOut"
-            }, 0.1);
-        }
-        
-        // 3. Smoothly slide up and fade in the portfolio layout concurrently
-        masterTimeline.to(mainContent, {
-            onStart: () => { 
-                if (mainContent) mainContent.style.display = "block"; 
-            },
-            opacity: 1, 
-            y: 0, 
-            duration: 0.8, 
-            ease: "power2.out"
-        }, "-=0.4");
-
-        // 4. Stagger your massive block titles out of their hidden overflow masks
-        masterTimeline.to(".reveal-title", { 
-            translateY: "0%", 
-            color: "#ffffff", 
-            duration: 0.8, 
-            ease: "power3.out", 
-            stagger: 0.1 
-        }, "-=0.5");
->>>>>>> 9506adfa7603fb4d97d048308fc5de6730994ed8
     }
 
     function bypassPreloaderSequence() {
@@ -426,7 +343,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function setPlayerActiveUI() {
         if(audioBtn && cdDisc && statusLight && marqueeContainer) {
             audioBtn.innerText = "// BLOCK ACTIVE";
-            audioBtn.style.color = "#ff0000"; /* High Contrast Pure Red Track Text Overlay */
+            audioBtn.style.color = "#ff0000"; 
             cdDisc.classList.add("spinning");
             statusLight.classList.add("active");
             marqueeContainer.classList.add("scrolling");
@@ -452,7 +369,6 @@ document.addEventListener("DOMContentLoaded", () => {
             if (shouldBePlaying) {
                 audioTrack.play().then(() => {
                     setPlayerActiveUI();
-                    audioHasStarted = true;
                 }).catch(() => {
                     setPlayerPassiveUI();
                 });
@@ -466,7 +382,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (audioTrack.paused) {
                     audioTrack.play().then(() => {
                         setPlayerActiveUI();
-                        audioHasStarted = true;
                         localStorage.setItem("portfolio-audio-active", "true");
                     }).catch(() => {});
                 } else {
