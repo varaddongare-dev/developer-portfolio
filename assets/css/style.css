@@ -3,19 +3,19 @@
  * Permission granted for educational modifications.
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;900&family=Noto+Sans+JP:wght@300;700;900&family=Space+Grotesk:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Impact&family=Courier+New:wght@400;700&family=Space+Grotesk:wght@400;700&family=Noto+Sans+JP:wght@400;700;900&display=swap');
 
 html, body {
     margin: 0;
     padding: 0;
-    background-color: #070708;
-    color: #e5e5e7;
+    background-color: #000000; /* Absolute Solid Black Ink Space */
+    color: #ffffff; /* Stark Chalk White */
     font-family: 'Space Grotesk', sans-serif;
     overflow-x: hidden;
 }
 
 /* =================================================================
- * GLOBAL HYPERLINK ISOLATION & ACCENT PROMPTS
+ * GLOBAL HYPERLINK ISOLATION & DEAD EYE ACCENTS
  * ================================================================= */
 a {
     color: inherit;
@@ -29,11 +29,11 @@ a {
 #main-content .redirect-container a:not(.animated-btn),
 a[href*="mailto"], 
 a[href*="github.com"] {
-    color: #dfb76c !important;
+    color: #ff0000 !important; /* Dead Eye Crimson Target Tint */
     text-decoration: none !important;
-    border-bottom: 1px dashed rgba(223, 183, 108, 0.4) !important;
+    border-bottom: 2px dashed rgba(255, 0, 0, 0.6) !important;
     padding-bottom: 2px !important;
-    transition: color 0.3s ease, border-color 0.3s ease !important;
+    transition: color 0.2s ease, border-color 0.2s ease !important;
 }
 
 #main-content p a:hover,
@@ -47,7 +47,7 @@ a[href*="github.com"]:hover {
 }
 
 /* =================================================================
- * PRELOADER & GUN BARREL TRANSITION ENGINE
+ * HIGH-CONTRAST FULLSCREEN VIDEO PRELOADER
  * ================================================================= */
 #preloader {
     position: fixed;
@@ -55,7 +55,7 @@ a[href*="github.com"]:hover {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: #ffffff;
+    background-color: #000000;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -63,50 +63,62 @@ a[href*="github.com"]:hover {
     overflow: hidden;
 }
 
-#gun-barrel-canvas {
+#intro-video {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    object-fit: cover; /* Forces seamless edge tracking across viewports */
+    display: none;     /* Dark-guarded until interaction clears the sandbox */
     z-index: 1;
 }
 
 .preloader-content-wrapper {
-    position: relative;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 360px;
+    padding: 0 20px;
+    box-sizing: border-box;
     pointer-events: none;
     transition: opacity 0.4s ease;
 }
 
 .preloader-title {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 1.8rem;
-    font-weight: bold;
-    letter-spacing: 0.1em;
-    color: #dfb76c;
+    font-family: 'Impact', sans-serif;
+    font-size: 2rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: #ff0000; /* Stamped Dead Eye Red */
     margin-bottom: 25px;
-    text-shadow: 0 0 10px rgba(223, 183, 108, 0.1);
+    text-transform: uppercase;
 }
 
 .code-card {
-    background-color: #0e0f11;
-    border: 1px solid #1c1e22;
-    border-radius: 4px;
+    background-color: #000000;
+    border: 2px solid #ff0000; /* Rugged Crimson Boundary Box */
+    border-radius: 0px; /* Stripped rounded modern curves */
     padding: 20px;
-    width: 320px;
+    width: 100%;
+    box-sizing: border-box;
     font-family: 'Courier New', Courier, monospace;
-    color: #8a8d93;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    color: #ffffff;
 }
 
 .code-card header {
     display: flex;
     gap: 6px;
     margin-bottom: 15px;
+    border-bottom: 1px dashed #ff0000;
+    padding-bottom: 10px;
 }
 
 #skip-intro-btn {
@@ -114,21 +126,21 @@ a[href*="github.com"]:hover {
     bottom: 40px;
     right: 40px;
     z-index: 10000;
-    background: #0e0f11;
-    border: 1px solid #1c1e22;
-    color: #5a5d64;
+    background: #000000;
+    border: 2px solid #ffffff;
+    color: #ffffff;
     padding: 10px 20px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.75rem;
+    font-family: 'Impact', sans-serif;
+    font-size: 0.85rem;
     letter-spacing: 0.15em;
+    text-transform: uppercase;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
 }
 
 #skip-intro-btn:hover {
-    border-color: #dfb76c;
-    color: #dfb76c;
-    box-shadow: 0 0 15px rgba(223, 183, 108, 0.1);
+    border-color: #ff0000;
+    color: #ff0000;
 }
 
 body.no-scroll {
@@ -136,12 +148,12 @@ body.no-scroll {
     height: 100vh !important;
 }
 
-.circle { width: 10px; height: 10px; border-radius: 50%; }
-.red { background-color: #ff5f56; }
-.yellow { background-color: #dfb76c; }
-.green { background-color: #222; }
-.orange-text { color: #dfb76c; }
-.blue-text { color: #8a8d93; }
+.circle { width: 10px; height: 10px; border-radius: 0%; } /* Aggressive Block Markers */
+.red { background-color: #ff0000; }
+.yellow { background-color: #ffffff; }
+.green { background-color: #333333; }
+.orange-text { color: #ff0000; font-weight: bold; }
+.blue-text { color: #ffffff; font-weight: bold; }
 
 #main-content {
     opacity: 0;
@@ -151,21 +163,22 @@ body.no-scroll {
 }
 
 /* =================================================================
- * CORE NAVIGATION SYSTEM
+ * WESTERN NAVIGATION ROUTING FRAME
  * ================================================================= */
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 25px 0;
-    border-bottom: 1px solid #1c1e22;
-    color: #5a5d64;
+    border-bottom: 2px solid #ffffff; /* Heavy solid white border anchor */
+    color: #ffffff;
     font-size: 0.8rem;
     font-weight: bold;
     letter-spacing: 0.05em;
     width: 100%;
     box-sizing: border-box;
 }
+
 .nav-links {
     display: flex;
     justify-content: center;
@@ -173,37 +186,35 @@ nav {
     gap: 5px;
     flex-grow: 1;
     margin: 0 20px;
-    
 }
 
 .nav-links a {
     text-decoration: none;
-    color: #5a5d64;
+    color: #ffffff;
     padding: 6px 16px;
-    font-weight: bold;
-    font-size: 0.85rem;
+    font-family: 'Impact', sans-serif;
+    font-size: 1rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    transition: color 0.3s ease, background-color 0.3s ease;
-    border-radius: 2px;
+    transition: color 0.2s ease, background-color 0.2s ease;
+    border-radius: 0px;
     white-space: nowrap;
 }
 
 .nav-links a:hover, .nav-links a.active {
-    color: #dfb76c;
-    background-color: rgba(28, 30, 34, 0.4);
-    
+    color: #000000;
+    background-color: #ff0000; /* Stamped reverse block selection */
 }
+
 .time-stamp {
+    font-family: 'Courier New', monospace;
     flex-shrink: 0;
     min-width: 200px;
+    color: #ff0000;
 }
-.cd-player-widget {
-    flex-shrink: 0;
-    
-}
+
 /* =================================================================
- * HIGH-IMPACT MAIN DISPLAY HEADERS & OVERRIDES
+ * HIGH-IMPACT OUTLAW DISPLAY HEADERS (RDR2 SCALE)
  * ================================================================= */
 .hero-section {
     margin: 14vh 0;
@@ -211,57 +222,54 @@ nav {
 
 .line-mask {
     overflow: hidden;
-    margin-bottom: -10px;
+    margin-bottom: -5px;
 }
 
 h1.reveal-title, 
 .hero-section h1, 
 .hero-section .reveal-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(3.8rem, 11.5vw, 12rem);
-    font-weight: 700;
-    line-height: 0.9;
+    font-family: 'Impact', sans-serif; /* Massive block display weight */
+    font-size: clamp(4rem, 12.5vw, 13rem);
+    font-weight: 900;
+    line-height: 0.85;
     margin: 0;
-    letter-spacing: -0.03em;
-    color: #ffffff !important; /* Overrides any unwanted link styling completely */
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #ffffff !important;
     transform: translateY(100%);
-    border: none !important;
-    border-bottom: none !important;
-    text-decoration: none !important;
-    outline: none !important;
-    box-shadow: none !important;
 }
 
-/* Re-enforce the signature gold middle line explicitly */
+/* Re-enforce the target contrast middle line explicitly */
 .hero-section .line-mask:nth-child(2) h1.reveal-title,
 .hero-section .line-mask:nth-child(2) .reveal-title {
-    color: #dfb76c !important;
-    text-shadow: 0 0 40px rgba(223, 183, 108, 0.1) !important;
+    color: #ff0000 !important; /* Striking Crimson Core Split */
 }
 
 /* =================================================================
- * SECTIONS & METRICS GRAPH SPECIFICATIONS
+ * METRICS METADATA BLOCK CHANNELS
  * ================================================================= */
 .metrics-section {
-    border-top: 1px solid #1c1e22;
+    border-top: 2px solid #ff0000;
     padding-top: 45px;
     margin-bottom: 12vh;
 }
 
 .metrics-header h2 {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(1.6rem, 3.8vw, 3.2rem);
-    font-weight: bold;
-    letter-spacing: 0.02em;
+    font-family: 'Impact', sans-serif;
+    font-size: clamp(2rem, 4.5vw, 4rem);
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: 1px;
     color: #ffffff;
     margin: 0 0 15px 0;
     max-width: 85%;
 }
 
 .metrics-header p {
-    color: #5a5d64;
+    font-family: 'Courier New', monospace;
+    color: #ff0000;
     margin: 0 0 45px 0;
-    font-size: 1.05rem;
+    font-size: 1.1rem;
 }
 
 .metrics-grid {
@@ -271,35 +279,36 @@ h1.reveal-title,
 }
 
 .metric-card {
-    border-top: 1px solid #1c1e22;
+    border-top: 2px solid #ffffff;
     padding-top: 20px;
     display: flex;
     flex-direction: column;
 }
 
 .metric-label {
-    font-size: 0.7rem;
-    color: #5a5d64;
+    font-size: 0.75rem;
+    color: #ff0000;
     font-weight: bold;
     letter-spacing: 0.1em;
     margin-bottom: 10px;
 }
 
 .metric-value {
-    font-size: 1.8rem;
-    font-weight: 700;
+    font-family: 'Impact', sans-serif;
+    font-size: 2.2rem;
+    text-transform: uppercase;
     color: #ffffff;
 }
 
 /* =================================================================
- * HORIZONTAL MARQUEE TAPE INTERCEPTS
+ * HORIZONTAL TAPE INTERCEPTS
  * ================================================================= */
 .marquee-section {
     margin: 10vh 0;
-    border-top: 1px solid #1c1e22;
-    border-bottom: 1px solid #1c1e22;
+    border-top: 2px solid #ff0000;
+    border-bottom: 2px solid #ff0000;
     padding: 25px 0;
-    background-color: #0b0c0e;
+    background-color: #ff0000; /* Fully crimson tracking channel */
 }
 
 .marquee-wrapper {
@@ -311,13 +320,13 @@ h1.reveal-title,
 .marquee-content {
     display: flex;
     white-space: nowrap;
-    animation: moveMarquee 22s linear infinite;
+    animation: moveMarquee 18s linear infinite;
 }
 
 .marquee-content span {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #1c1e22;
+    font-family: 'Impact', sans-serif;
+    font-size: 2rem;
+    color: #000000; /* Jet black ink cutouts on red bar */
     margin-right: 50px;
     letter-spacing: 0.05em;
 }
@@ -328,11 +337,11 @@ h1.reveal-title,
 }
 
 /* =================================================================
- * CTAS & INTERACTIVE SYSTEM BUTTONS
+ * CTAS & PRODUCTION ACCELERATOR BUTTONS
  * ================================================================= */
 .redirect-section {
     margin: 16vh 0;
-    border-top: 1px solid #1c1e22;
+    border-top: 2px solid #ffffff;
     padding-top: 65px;
     display: flex;
     justify-content: center;
@@ -340,11 +349,12 @@ h1.reveal-title,
 
 .redirect-container {
     text-align: center;
-    max-width: 580px;
+    max-width: 620px;
 }
 
 .redirect-container p {
-    color: #5a5d64;
+    font-family: 'Courier New', monospace;
+    color: #ffffff;
     font-size: 1.15rem;
     line-height: 1.7;
     margin-bottom: 45px;
@@ -357,23 +367,23 @@ h1.reveal-title,
     text-decoration: none;
     background-color: transparent;
     color: #ffffff;
-    border: 1px solid #dfb76c;
+    border: 2px solid #ff0000;
     padding: 16px 36px;
-    font-size: 0.9rem;
-    font-weight: bold;
+    font-family: 'Impact', sans-serif;
+    font-size: 1.1rem;
     letter-spacing: 0.15em;
     border-radius: 0px;
     position: relative;
     overflow: hidden;
-    transition: color 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s ease;
+    transition: color 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease;
     z-index: 1;
 }
 
 .animated-btn .btn-arrow {
     margin-left: 14px;
-    font-size: 1.1rem;
-    color: #dfb76c;
-    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), color 0.4s ease;
+    font-size: 1.2rem;
+    color: #ff0000;
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s ease;
 }
 
 .animated-btn::before {
@@ -383,15 +393,15 @@ h1.reveal-title,
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #dfb76c;
-    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    background-color: #ff0000;
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
     z-index: -1;
     transform: translateY(0);
 }
 
 .animated-btn:hover {
-    color: #070708;
-    border-color: #dfb76c;
+    color: #000000;
+    border-color: #ff0000;
 }
 
 .animated-btn:hover::before {
@@ -400,17 +410,17 @@ h1.reveal-title,
 
 .animated-btn:hover .btn-arrow {
     transform: translateX(6px);
-    color: #070708;
+    color: #000000;
 }
 
 /* =================================================================
- * CORE GRID PORTFOLIO FRAMEWORKS
+ * CORE GRID ACCORDION MODULE STRUCTURE
  * ================================================================= */
 .portfolio-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1px;
-    background-color: #1c1e22;
+    background-color: #ffffff;
     margin: 12vh 0;
 }
 
@@ -420,7 +430,7 @@ h1.reveal-title,
 }
 
 .grid-item {
-    background-color: #070708;
+    background-color: #000000;
     padding: 55px 35px;
     min-height: 320px;
     display: flex;
@@ -428,48 +438,51 @@ h1.reveal-title,
     justify-content: space-between;
     width: 100%;
     box-sizing: border-box;
-    transition: background-color 0.3s;
+    transition: background-color 0.2s;
 }
 
 .grid-item:hover {
-    background-color: #0e0f11;
+    background-color: #111113;
 }
 
 .grid-item h2 { 
-    font-family: 'Cinzel', serif;
-    font-size: 2.3rem; 
+    font-family: 'Impact', sans-serif;
+    font-size: 2.5rem; 
     font-weight: 900;
-    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     margin: 0 0 12px 0; 
     color: #ffffff;
-    transition: color 0.3s ease;
+    transition: color 0.2s ease;
 }
 
-.grid-item p { color: #5a5d64; font-size: 0.95rem; max-width: 360px; margin: 0; line-height: 1.6; }
-.tag { font-size: 0.7rem; color: #dfb76c; font-weight: bold; letter-spacing: 0.08em; }
+.grid-item p { color: #ffffff; opacity: 0.7; font-family: 'Courier New', monospace; font-size: 0.95rem; max-width: 360px; margin: 0; line-height: 1.6; }
+.tag { font-family: 'Courier New', monospace !important; font-size: 0.75rem; color: #ff0000; font-weight: bold; letter-spacing: 0.08em; }
 
 footer {
     display: flex;
     justify-content: space-between;
     padding: 45px 0;
-    border-top: 1px solid #1c1e22;
-    color: #383a3f;
-    font-size: 0.75rem;
+    border-top: 2px solid #ffffff;
+    color: #ffffff;
+    opacity: 0.4;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
     font-weight: bold;
 }
 
 /* =================================================================
- * SYSTEM CD AUDIO PLAYER COMPONENT
+ * PHONOGRAPH AUDIO CONTROLLER SYSTEM
  * ================================================================= */
 .cd-player-widget {
     display: flex;
     align-items: center;
-    background-color: #0e0f11;
-    border: 1px solid #1c1e22;
+    background-color: #000000;
+    border: 2px solid #ff0000;
     padding: 10px 18px;
     border-radius: 0px;
     gap: 15px;
-    width: 280px;
+    width: 290px;
     box-sizing: border-box;
 }
 
@@ -485,9 +498,9 @@ footer {
 .disc-media {
     width: 100%;
     height: 100%;
-    border-radius: 50%;
-    background: radial-gradient(circle, #dfb76c 8%, #070708 9%, #121315 35%, #dfb76c 36%, #121315 40%, #070708 70%);
-    border: 1px solid #1c1e22;
+    border-radius: 0%; /* Rugged block alignment */
+    background: #ff0000;
+    border: 2px solid #ffffff;
     position: relative;
     transition: transform 0.3s ease;
 }
@@ -496,16 +509,16 @@ footer {
     position: absolute;
     width: 12px;
     height: 12px;
-    background-color: #0e0f11;
-    border: 1px solid #dfb76c;
-    border-radius: 50%;
+    background-color: #000000;
+    border: 1px solid #ffffff;
+    border-radius: 0%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
 .disc-media.spinning {
-    animation: spinDisc 3.5s linear infinite;
+    animation: spinDisc 2.5s linear infinite;
 }
 
 @keyframes spinDisc {
@@ -525,23 +538,25 @@ footer {
     width: 100%;
     overflow: hidden;
     white-space: nowrap;
-    background-color: #070708;
-    border: 1px solid #1c1e22;
+    background-color: #000000;
+    border: 1px dashed #ff0000;
     padding: 3px 6px;
     box-sizing: border-box;
 }
 
 #track-title-text {
     display: inline-block;
-    font-size: 0.65rem;
+    font-family: 'Impact', sans-serif;
+    font-size: 0.8rem;
     font-weight: 900;
-    color: #5a5d64;
+    text-transform: uppercase;
+    color: #ffffff;
     letter-spacing: 0.1em;
 }
 
 .track-marquee.scrolling #track-title-text {
-    animation: scrollTrackName 7s linear infinite;
-    color: #dfb76c;
+    animation: scrollTrackName 6s linear infinite;
+    color: #ff0000;
 }
 
 @keyframes scrollTrackName {
@@ -558,45 +573,48 @@ footer {
 .cd-control-btn {
     background: transparent;
     border: none;
-    color: #5a5d64;
-    font-size: 0.65rem;
+    color: #ffffff;
+    opacity: 0.6;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
     font-weight: 900;
     letter-spacing: 0.05em;
     cursor: pointer;
     padding: 0;
-    transition: color 0.2s ease;
+    transition: color 0.2s ease, opacity 0.2s ease;
 }
 
 .cd-control-btn:hover {
-    color: #ffffff;
+    color: #ff0000;
+    opacity: 1;
 }
 
 .status-indicator {
-    width: 6px;
-    height: 6px;
-    background-color: #1c1e22;
-    border-radius: 50%;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    width: 8px;
+    height: 8px;
+    background-color: #333333;
+    border-radius: 0%;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .status-indicator.active {
-    background-color: #dfb76c;
-    box-shadow: 0 0 8px #dfb76c;
+    background-color: #ff0000;
+    box-shadow: 0 0 8px #ff0000;
 }
 
 .tag, .time-stamp, .nav-status, .metric-label, .marquee-content span, .status-badge {
-    font-family: 'Noto Sans JP', Arial, sans-serif !important;
+    font-family: 'Courier New', monospace !important;
     letter-spacing: 0.1em;
 }
 
 /* =================================================================
- * EXTENSIONS: CORE INTERACTIVE ACCORDION MECHANICS
+ * INTERACTIVE RUGGED ACCORDION EXTENSIONS
  * ================================================================= */
 .interactive-accordion-grid {
     display: flex !important;
     flex-direction: column;
     gap: 1px;
-    background-color: #1c1e22;
+    background-color: #ffffff;
 }
 
 .accordion-item {
@@ -606,8 +624,7 @@ footer {
     flex-direction: column;
     justify-content: flex-start !important;
     cursor: pointer;
-    background-color: #070708;
-    transition: background-color 0.3s ease;
+    background-color: #000000;
 }
 
 .accordion-trigger {
@@ -617,48 +634,55 @@ footer {
 }
 
 .accordion-item:hover .accordion-trigger {
-    background-color: #0e0f11;
+    background-color: #111113;
 }
 
 .accordion-item:hover .accordion-trigger h2 {
-    color: #dfb76c;
+    color: #ff0000;
 }
 
 .project-headline {
     margin-top: 15px !important;
-    font-size: 1.15rem !important;
-    color: #8a8d93 !important;
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem !important;
+    color: #ffffff !important;
+    opacity: 0.8;
     max-width: 800px !important;
     line-height: 1.6 !important;
 }
 
 .accordion-icon {
-    font-size: 1.2rem;
-    color: #5a5d64;
-    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s ease;
+    font-size: 1.3rem;
+    color: #ffffff;
+    font-weight: bold;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), color 0.2s ease;
     display: inline-block;
 }
 
 .accordion-item.is-expanded .accordion-icon {
     transform: rotate(45deg);
-    color: #dfb76c;
+    color: #ff0000;
 }
 
 /* Status Badges */
 .status-badge {
-    font-size: 0.65rem;
-    padding: 3px 10px;
-    font-weight: 900;
+    font-family: 'Impact', sans-serif !important;
+    font-size: 0.75rem;
+    padding: 4px 12px;
+    border-radius: 0px;
+    text-transform: uppercase;
 }
+
 .status-badge.active-work {
-    background-color: rgba(223, 183, 108, 0.15);
-    color: #dfb76c;
-    border: 1px solid rgba(223, 183, 108, 0.3);
+    background-color: rgba(255, 0, 0, 0.2);
+    color: #ff0000;
+    border: 2px solid #ff0000;
 }
+
 .status-badge.secure-lock {
-    background-color: rgba(90, 93, 100, 0.15);
-    color: #8a8d93;
-    border: 1px solid rgba(90, 93, 100, 0.3);
+    background-color: #333333;
+    color: #ffffff;
+    border: 2px solid #ffffff;
 }
 
 /* Slide Drawer Elements */
@@ -668,12 +692,12 @@ footer {
     position: relative;
     width: 100%;
     box-sizing: border-box;
-    background-color: #090a0c;
+    background-color: #050505;
 }
 
 .content-inner {
     padding: 10px 35px 50px 35px;
-    border-top: 1px dashed #1c1e22;
+    border-top: 2px dashed #ff0000;
     box-sizing: border-box;
 }
 
@@ -694,30 +718,34 @@ footer {
 }
 
 .dossier-block h3 {
-    font-family: 'Cinzel', serif;
-    font-size: 0.85rem;
-    color: #5a5d64;
-    letter-spacing: 0.15em;
+    font-family: 'Impact', sans-serif;
+    font-size: 1.1rem;
+    color: #ff0000;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
     margin: 0 0 15px 0;
-    font-weight: 900;
 }
 
 .dossier-block p {
-    font-size: 0.95rem;
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
     line-height: 1.7;
-    color: #a2a5ad;
+    color: #ffffff;
+    opacity: 0.9;
     margin: 0;
 }
 
-.dossier-block ul {
+.dossier-block us {
     margin: 0;
     padding-left: 18px;
 }
 
 .dossier-block li {
-    font-size: 0.95rem;
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
     line-height: 1.8;
-    color: #a2a5ad;
+    color: #ffffff;
+    opacity: 0.9;
     margin-bottom: 8px;
 }
 
@@ -728,22 +756,23 @@ footer {
     justify-content: center;
     text-decoration: none;
     background-color: transparent;
-    color: #dfb76c;
-    border: 1px solid rgba(223, 183, 108, 0.4);
+    color: #ff0000;
+    border: 2px solid #ff0000;
     padding: 14px 28px;
-    font-size: 0.8rem;
-    font-weight: bold;
+    font-family: 'Impact', sans-serif;
+    font-size: 1rem;
     letter-spacing: 0.15em;
+    text-transform: uppercase;
     position: relative;
     overflow: hidden;
-    transition: color 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s ease;
+    transition: color 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease;
     z-index: 1;
 }
 
 .git-redirect-btn .btn-arrow {
     margin-left: 12px;
-    font-size: 0.9rem;
-    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    font-size: 1.1rem;
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .git-redirect-btn::before {
@@ -753,15 +782,15 @@ footer {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #dfb76c;
-    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    background-color: #ff0000;
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
     z-index: -1;
     transform: translateY(0);
 }
 
 .git-redirect-btn:hover {
-    color: #070708;
-    border-color: #dfb76c;
+    color: #000000;
+    border-color: #ff0000;
 }
 
 .git-redirect-btn:hover::before {
@@ -773,7 +802,7 @@ footer {
 }
 
 /* =================================================================
- * EXTENSIONS: TERMINAL RADAR INTERCEPT TRACER
+ * FRONTIER CODES RADAR MODULE
  * ================================================================= */
 .radar-scroll-module {
     display: flex;
@@ -784,32 +813,32 @@ footer {
     cursor: pointer;
     width: fit-content;
     padding: 15px 30px;
-    background-color: rgba(14, 15, 17, 0.4);
-    border: 1px solid #1c1e22;
-    transition: border-color 0.3s ease, background-color 0.3s ease;
+    background-color: #000000;
+    border: 2px solid #ff0000;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
 .radar-scroll-module:hover {
-    border-color: #dfb76c;
-    background-color: #0e0f11;
+    border-color: #ffffff;
+    background-color: #111113;
 }
 
 .radar-console-text {
     font-family: 'Courier New', Courier, monospace;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     letter-spacing: 0.1em;
-    color: #8a8d93;
+    color: #ffffff;
     margin-bottom: 12px;
     text-transform: uppercase;
 }
 
 .radar-console-text .system-prompt {
-    color: #dfb76c;
+    color: #ff0000;
     font-weight: bold;
 }
 
 .terminal-cursor {
-    color: #dfb76c;
+    color: #ff0000;
     font-weight: bold;
     animation: blinkTerminalCursor 0.8s steps(2, start) infinite;
 }
@@ -837,7 +866,7 @@ footer {
 }
 
 /* =================================================================
- * EXTENSIONS: MOBILE RESPONSIVE OPTIMIZATION OVERRIDES
+ * MOBILE BREAKPOINT MATRIX RESET CONFIGURATIONS
  * ================================================================= */
 @media (max-width: 1024px) {
     nav {
@@ -869,22 +898,21 @@ footer {
     }
     .nav-links a {
         margin: 0 15px 0 0;
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
     .cd-player-widget {
         width: 100%; 
         max-width: 100%;
     }
     .reveal-title {
-        line-height: 1.0;
-        letter-spacing: -0.01em;
+        line-height: 0.95;
     }
     .metrics-grid {
         grid-template-columns: repeat(2, 1fr); 
         gap: 16px;
     }
     .metric-value {
-        font-size: 1.4rem; 
+        font-size: 1.8rem; 
     }
     .interactive-accordion-grid div[style*="flex-wrap"] {
         padding: 20px 15px !important;
@@ -893,10 +921,10 @@ footer {
         gap: 12px !important;
     }
     .interactive-accordion-grid div[style*="flex-wrap"] span {
-        font-size: 0.8rem !important;
+        font-size: 0.85rem !important;
     }
     .interactive-accordion-grid div[style*="flex-wrap"] div[style*="Courier New"] {
-        font-size: 0.8rem !important;
+        font-size: 0.85rem !important;
         width: 100%;
         box-sizing: border-box;
         word-break: break-word; 
@@ -906,7 +934,7 @@ footer {
         padding: 30px 15px;
     }
     .grid-item h2 {
-        font-size: 1.6rem; 
+        font-size: 1.8rem; 
     }
     .project-headline {
         font-size: 1.0rem !important;
@@ -928,14 +956,98 @@ footer {
         box-sizing: border-box;
         padding: 15px;
     }
-    .radar-console-text {
-        font-size: 0.75rem;
-    }
 }
 
 @media (max-width: 500px) {
     #main-content h1, 
     .reveal-title {
-        font-size: 3.2rem !important; 
+        font-size: 3.5rem !important; 
+    }
+}
+
+/* =================================================================
+ * HARDWARE-ACCELERATED ACTIVE STAGE OVERLAYS
+ * ================================================================= */
+#system-boot-wall {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100dvw;
+    height: 100dvh;
+    background: #000000;
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Impact', sans-serif;
+    touch-action: manipulation;
+}
+
+.boot-prompt-box {
+    text-align: center;
+    padding: 20px;
+    width: 90%;
+    box-sizing: border-box;
+}
+
+.secure-tag {
+    font-family: 'Courier New', monospace;
+    font-size: clamp(0.7rem, 2.2vw, 0.85rem);
+    color: #ff0000;
+    font-weight: bold;
+    letter-spacing: 3px;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.blink-text {
+    font-size: clamp(1.4rem, 4.5vw, 2.2rem);
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 900;
+    line-height: 1.3;
+    animation: bootBlink 1.2s infinite;
+}
+
+.sub-tag {
+    font-family: 'Courier New', monospace;
+    font-size: clamp(0.65rem, 1.8vw, 0.75rem);
+    color: #ffffff;
+    opacity: 0.5;
+    letter-spacing: 1px;
+    display: block;
+    margin-top: 15px;
+}
+
+@keyframes bootBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* =================================================================
+ * HIGH-CONTRAST LAYOUT BREAKDOWN GLITCH
+ * ================================================================= */
+.shattered-glitch {
+    animation: layoutFracture 0.5s cubic-bezier(0.15, 0.85, 0.35, 1) forwards;
+}
+
+@keyframes layoutFracture {
+    0% {
+        transform: scale(1) rotate(0deg);
+        filter: blur(0px) invert(0);
+    }
+    15% {
+        transform: scale(0.95) rotate(-2deg) translate(-10px, 10px);
+        filter: blur(1px) invert(1) sepia(1) hue-rotate(180deg); /* Pure red/white/black spectrum fracture */
+    }
+    35% {
+        transform: scale(0.97) rotate(1.5deg) translate(8px, -5px);
+        filter: blur(2px) saturate(4);
+    }
+    100% {
+        transform: scale(0.9) translate(0px, 60px) rotate(3deg);
+        opacity: 0;
+        filter: blur(8px) invert(0);
     }
 }
