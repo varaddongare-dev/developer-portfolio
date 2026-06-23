@@ -8,14 +8,66 @@
 html, body {
     margin: 0;
     padding: 0;
-    background-color: #000000; /* Absolute Solid Black Ink Space */
-    color: #ffffff; /* Stark Chalk White */
+    background-color: #000000; 
+    color: #ffffff; 
     font-family: 'Space Grotesk', sans-serif;
     overflow-x: hidden;
+    position: relative;
 }
 
 /* =================================================================
- * GLOBAL HYPERLINK ISOLATION & DEAD EYE ACCENTS
+ * 007 MASTER CANVAS OVERLAY ROUTING & BACKGROUND BLUEPRINTS
+ * ================================================================= */
+#pause-ambient-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1; /* Sits cleanly between solid background grids and clickable layout blocks */
+    pointer-events: none; /* Safely passes finger taps and mouse clicks directly to elements below */
+}
+
+html::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: 
+        radial-gradient(circle at 85% 20%, transparent 120px, rgba(255, 204, 0, 0.03) 121px, rgba(255, 204, 0, 0.03) 125px, transparent 126px),
+        radial-gradient(circle at 85% 20%, transparent 240px, rgba(255, 204, 0, 0.02) 241px, rgba(255, 204, 0, 0.02) 245px, transparent 246px),
+        linear-gradient(rgba(255, 204, 0, 0.02) 1px, transparent 1px) 0 0 / 50px 50px,
+        linear-gradient(90deg, rgba(255, 204, 0, 0.02) 1px, transparent 1px) 0 0 / 50px 50px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    right: 15%;
+    width: 1px;
+    height: 100vh;
+    background: linear-gradient(to bottom, rgba(255, 204, 0, 0.08), transparent);
+    pointer-events: none;
+    z-index: 0;
+}
+
+#main-content {
+    position: relative;
+    z-index: 2; /* Forces content layer above the ambient canvas mask */
+    opacity: 0;
+    transform: translateY(40px);
+    padding: 30px;
+    box-sizing: border-box;
+    pointer-events: auto;
+}
+
+/* =================================================================
+ * GLOBAL HYPERLINK ISOLATION & SPY GOLD ACCENTS
  * ================================================================= */
 a {
     color: inherit;
@@ -23,15 +75,14 @@ a {
     transition: color 0.3s ease;
 }
 
-/* Targets true body-text inline anchors exclusively—shields layout titles and button layouts */
 #main-content p a,
 #main-content .project-details-dossier a:not(.git-redirect-btn),
 #main-content .redirect-container a:not(.animated-btn),
 a[href*="mailto"], 
 a[href*="github.com"] {
-    color: #ff0000 !important; /* Dead Eye Crimson Target Tint */
+    color: #ffcc00 !important; 
     text-decoration: none !important;
-    border-bottom: 2px dashed rgba(255, 0, 0, 0.6) !important;
+    border-bottom: 2px dashed rgba(255, 204, 0, 0.6) !important;
     padding-bottom: 2px !important;
     transition: color 0.2s ease, border-color 0.2s ease !important;
 }
@@ -47,7 +98,7 @@ a[href*="github.com"]:hover {
 }
 
 /* =================================================================
- * HIGH-CONTRAST FULLSCREEN VIDEO PRELOADER
+ * HIGH-CONTRAST FULLSCREEN VIDEO PRELOADER (YELLOW MATRIX)
  * ================================================================= */
 #preloader {
     position: fixed;
@@ -59,8 +110,61 @@ a[href*="github.com"]:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999;
+    z-index: 10000 !important; /* Locks gateway completely on top */
     overflow: hidden;
+}
+
+#system-boot-wall {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: vh;
+    background: #000000;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 16px;
+    font-family: 'Impact', sans-serif;
+    touch-action: manipulation;
+    z-index: 10005 !important;
+    box-sizing: border-box;
+    padding: 20px;
+}
+#system-boot-wall .secure-tag,
+#system-boot-wall .blink-text,
+#system-boot-wall .sub-tag {
+    display: block !important;
+    text-align: center !important;
+    margin: 0 !important;
+}
+.secure-tag {
+    font-family: 'Courier New', monospace !important;
+    font-size: clamp(0.8rem, 2.2vw, 1rem) !important;
+    color: #ffcc00 !important;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+.blink-text {
+    font-size: clamp(1.4rem, 4.5vw, 2.5rem) !important;
+    color: #ffffff !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 900;
+    line-height: 1.3;
+    animation: bootBlink 1.2s infinite;
+}
+.sub-tag {
+    font-family: 'Courier New', monospace !important;
+    font-size: clamp(0.7rem, 1.8vw, 0.85rem) !important;
+    color: #ffffff !important;
+    opacity: 0.5;
+    letter-spacing: 1px;
+}
+@keyframes bootBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
 }
 
 #intro-video {
@@ -70,8 +174,8 @@ a[href*="github.com"]:hover {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center center; /* Forces seamless edge tracking across viewports */
-    display: none;     /* Dark-guarded until interaction clears the sandbox */
+    object-position: center center;
+    display: none;     
     z-index: 1;
 }
 
@@ -98,15 +202,15 @@ a[href*="github.com"]:hover {
     font-size: 2rem;
     font-weight: 900;
     letter-spacing: 2px;
-    color: #ff0000; /* Stamped Dead Eye Red */
+    color: #ffcc00; 
     margin-bottom: 25px;
     text-transform: uppercase;
 }
 
 .code-card {
     background-color: #000000;
-    border: 2px solid #ff0000; /* Rugged Crimson Boundary Box */
-    border-radius: 0px; /* Stripped rounded modern curves */
+    border: 2px solid #ffcc00; 
+    border-radius: 0px; 
     padding: 20px;
     width: 100%;
     box-sizing: border-box;
@@ -118,15 +222,30 @@ a[href*="github.com"]:hover {
     display: flex;
     gap: 6px;
     margin-bottom: 15px;
-    border-bottom: 1px dashed #ff0000;
+    border-bottom: 1px dashed #ffcc00;
     padding-bottom: 10px;
+}
+
+#post-video-prompt {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.95);
+    border: 2px solid #ffcc00;
+    padding: 30px 40px;
+    width: 90%;
+    max-width: 500px;
+    box-sizing: border-box;
+    box-shadow: 0 0 25px rgba(255, 204, 0, 0.25);
+    z-index: 10002 !important;
 }
 
 #skip-intro-btn {
     position: fixed;
     bottom: 40px;
     right: 40px;
-    z-index: 10000;
+    z-index: 10003 !important;
     background: #000000;
     border: 2px solid #ffffff;
     color: #ffffff;
@@ -140,8 +259,8 @@ a[href*="github.com"]:hover {
 }
 
 #skip-intro-btn:hover {
-    border-color: #ff0000;
-    color: #ff0000;
+    border-color: #ffcc00;
+    color: #ffcc00;
 }
 
 body.no-scroll {
@@ -149,29 +268,22 @@ body.no-scroll {
     height: 100vh !important;
 }
 
-.circle { width: 10px; height: 10px; border-radius: 0%; } /* Aggressive Block Markers */
-.red { background-color: #ff0000; }
+.circle { width: 10px; height: 10px; border-radius: 0%; }
+.red { background-color: #ffcc00; }
 .yellow { background-color: #ffffff; }
 .green { background-color: #333333; }
-.orange-text { color: #ff0000; font-weight: bold; }
+.orange-text { color: #ffcc00; font-weight: bold; }
 .blue-text { color: #ffffff; font-weight: bold; }
 
-#main-content {
-    opacity: 0;
-    transform: translateY(40px);
-    padding: 30px;
-    box-sizing: border-box;
-}
-
 /* =================================================================
- * WESTERN NAVIGATION ROUTING FRAME
+ * INTERACTION NAVIGATION LAYER
  * ================================================================= */
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 25px 0;
-    border-bottom: 2px solid #ffffff; /* Heavy solid white border anchor */
+    border-bottom: 2px solid #ffffff; 
     color: #ffffff;
     font-size: 0.8rem;
     font-weight: bold;
@@ -198,27 +310,26 @@ nav {
     letter-spacing: 0.08em;
     text-transform: uppercase;
     transition: color 0.2s ease, background-color 0.2s ease;
-    border-radius: 0px;
     white-space: nowrap;
 }
 
 .nav-links a:hover, .nav-links a.active {
     color: #000000;
-    background-color: #ff0000; /* Stamped reverse block selection */
+    background-color: #ffcc00; 
 }
 
 .time-stamp {
     font-family: 'Courier New', monospace;
     flex-shrink: 0;
     min-width: 200px;
-    color: #ff0000;
+    color: #ffcc00;
 }
 
 /* =================================================================
- * HIGH-IMPACT OUTLAW DISPLAY HEADERS (RDR2 SCALE)
+ * HIGH-IMPACT TYPOGRAPHY REVEALS
  * ================================================================= */
 .hero-section {
-    margin: 14vh 0;
+    margin: 10vh 0;
 }
 
 .line-mask {
@@ -226,13 +337,11 @@ nav {
     margin-bottom: -5px;
 }
 
-h1.reveal-title, 
-.hero-section h1, 
-.hero-section .reveal-title {
+h1.reveal-title, .hero-section h1, .hero-section .reveal-title {
     font-family: 'Impact', sans-serif;
-    font-size: clamp(3.2rem, 11vw, 13rem); /* Balanced mobile base scaling */
+    font-size: clamp(3.2rem, 11vw, 13rem); 
     font-weight: 900;
-    line-height: 0.95; /* Clean alignment spacing prevents layout collisons */
+    line-height: 0.95; 
     margin: 0;
     letter-spacing: 0.5px;
     text-transform: uppercase;
@@ -240,19 +349,18 @@ h1.reveal-title,
     transform: translateY(100%);
 }
 
-/* Re-enforce the target contrast middle line explicitly */
 .hero-section .line-mask:nth-child(2) h1.reveal-title,
 .hero-section .line-mask:nth-child(2) .reveal-title {
-    color: #ff0000 !important; /* Striking Crimson Core Split */
+    color: #ffcc00 !important; 
 }
 
 /* =================================================================
- * METRICS METADATA BLOCK CHANNELS
+ * DATA GRID & DOSSIER CARDS
  * ================================================================= */
 .metrics-section {
-    border-top: 2px solid #ff0000;
+    border-top: 2px solid #ffcc00;
     padding-top: 45px;
-    margin-bottom: 12vh;
+    margin-bottom: 8vh;
 }
 
 .metrics-header h2 {
@@ -263,12 +371,11 @@ h1.reveal-title,
     letter-spacing: 1px;
     color: #ffffff;
     margin: 0 0 15px 0;
-    max-width: 85%;
 }
 
 .metrics-header p {
     font-family: 'Courier New', monospace;
-    color: #ff0000;
+    color: #ffcc00;
     margin: 0 0 45px 0;
     font-size: 1.1rem;
 }
@@ -288,7 +395,7 @@ h1.reveal-title,
 
 .metric-label {
     font-size: 0.75rem;
-    color: #ff0000;
+    color: #ffcc00;
     font-weight: bold;
     letter-spacing: 0.1em;
     margin-bottom: 10px;
@@ -301,15 +408,35 @@ h1.reveal-title,
     color: #ffffff;
 }
 
+.keyword-matrix-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin: 40px 0;
+}
+.keyword-item {
+    border: 1px solid rgba(255, 204, 0, 0.3);
+    background: rgba(9, 10, 12, 0.6);
+    padding: 20px;
+    font-family: 'Courier New', monospace;
+}
+.keyword-item h4 {
+    color: #ffcc00;
+    margin: 0 0 8px 0;
+    font-family: 'Impact', sans-serif;
+    letter-spacing: 1px;
+    font-size: 1.1rem;
+}
+
 /* =================================================================
- * HORIZONTAL TAPE INTERCEPTS
+ * MARQUEE RUNTIME TAPE
  * ================================================================= */
 .marquee-section {
-    margin: 10vh 0;
-    border-top: 2px solid #ff0000;
-    border-bottom: 2px solid #ff0000;
+    margin: 8vh 0;
+    border-top: 2px solid #ffcc00;
+    border-bottom: 2px solid #ffcc00;
     padding: 25px 0;
-    background-color: #ff0000; /* Fully crimson tracking channel */
+    background-color: #ffcc00; 
 }
 
 .marquee-wrapper {
@@ -327,7 +454,7 @@ h1.reveal-title,
 .marquee-content span {
     font-family: 'Impact', sans-serif;
     font-size: 2rem;
-    color: #000000; /* Jet black ink cutouts on red bar */
+    color: #000000; 
     margin-right: 50px;
     letter-spacing: 0.05em;
 }
@@ -338,10 +465,10 @@ h1.reveal-title,
 }
 
 /* =================================================================
- * CTAS & PRODUCTION ACCELERATOR BUTTONS
+ * PRIMARY ACTION LINKS & REDIRECTIONS
  * ================================================================= */
 .redirect-section {
-    margin: 16vh 0;
+    margin: 10vh 0;
     border-top: 2px solid #ffffff;
     padding-top: 65px;
     display: flex;
@@ -350,7 +477,7 @@ h1.reveal-title,
 
 .redirect-container {
     text-align: center;
-    max-width: 620px;
+    max-width: 750px;
 }
 
 .redirect-container p {
@@ -368,12 +495,11 @@ h1.reveal-title,
     text-decoration: none;
     background-color: transparent;
     color: #ffffff;
-    border: 2px solid #ff0000;
+    border: 2px solid #ffcc00;
     padding: 16px 36px;
     font-family: 'Impact', sans-serif;
     font-size: 1.1rem;
     letter-spacing: 0.15em;
-    border-radius: 0px;
     position: relative;
     overflow: hidden;
     transition: color 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease;
@@ -383,7 +509,7 @@ h1.reveal-title,
 .animated-btn .btn-arrow {
     margin-left: 14px;
     font-size: 1.2rem;
-    color: #ff0000;
+    color: #ffcc00;
     transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s ease;
 }
 
@@ -394,7 +520,7 @@ h1.reveal-title,
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #ff0000;
+    background-color: #ffcc00;
     transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
     z-index: -1;
     transform: translateY(0);
@@ -402,7 +528,7 @@ h1.reveal-title,
 
 .animated-btn:hover {
     color: #000000;
-    border-color: #ff0000;
+    border-color: #ffcc00;
 }
 
 .animated-btn:hover::before {
@@ -415,201 +541,7 @@ h1.reveal-title,
 }
 
 /* =================================================================
- * CORE GRID ACCORDION MODULE STRUCTURE
- * ================================================================= */
-.portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1px;
-    background-color: #ffffff;
-    margin: 12vh 0;
-}
-
-.portfolio-grid a {
-    display: flex;
-    height: 100%;
-}
-
-.grid-item {
-    background-color: #000000;
-    padding: 55px 35px;
-    min-height: 320px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 100%;
-    box-sizing: border-box;
-    transition: background-color 0.2s;
-}
-
-.grid-item:hover {
-    background-color: #111113;
-}
-
-.grid-item h2 { 
-    font-family: 'Impact', sans-serif;
-    font-size: 2.5rem; 
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin: 0 0 12px 0; 
-    color: #ffffff;
-    transition: color 0.2s ease;
-}
-
-.grid-item p { color: #ffffff; opacity: 0.7; font-family: 'Courier New', monospace; font-size: 0.95rem; max-width: 360px; margin: 0; line-height: 1.6; }
-.tag { font-family: 'Courier New', monospace !important; font-size: 0.75rem; color: #ff0000; font-weight: bold; letter-spacing: 0.08em; }
-
-footer {
-    display: flex;
-    justify-content: space-between;
-    padding: 45px 0;
-    border-top: 2px solid #ffffff;
-    color: #ffffff;
-    opacity: 0.4;
-    font-family: 'Courier New', monospace;
-    font-size: 0.8rem;
-    font-weight: bold;
-}
-
-/* =================================================================
- * PHONOGRAPH AUDIO CONTROLLER SYSTEM
- * ================================================================= */
-.cd-player-widget {
-    display: flex;
-    align-items: center;
-    background-color: #000000;
-    border: 2px solid #ff0000;
-    padding: 10px 18px;
-    border-radius: 0px;
-    gap: 15px;
-    width: 290px;
-    box-sizing: border-box;
-}
-
-.cd-deck {
-    position: relative;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.disc-media {
-    width: 100%;
-    height: 100%;
-    border-radius: 0%; /* Rugged block alignment */
-    background: #ff0000;
-    border: 2px solid #ffffff;
-    position: relative;
-    transition: transform 0.3s ease;
-}
-
-.disc-center-hole {
-    position: absolute;
-    width: 11px;
-    height: 11px;
-    background-color: #000000;
-    border: 1px solid #ffffff;
-    border-radius: 0%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.disc-media.spinning {
-    animation: spinDisc 2.5s linear infinite;
-}
-
-@keyframes spinDisc {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.cd-metadata {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    flex-grow: 1;
-    overflow: hidden;
-}
-
-.track-marquee {
-    width: 100%;
-    overflow: hidden;
-    white-space: nowrap;
-    background-color: #000000;
-    border: 1px dashed #ff0000;
-    padding: 4px 6px;
-    box-sizing: border-box;
-}
-
-#track-title-text {
-    display: inline-block;
-    font-family: 'Impact', sans-serif;
-    font-size: 0.82rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    color: #ffffff;
-    letter-spacing: 1px;
-}
-
-.track-marquee.scrolling #track-title-text {
-    animation: scrollTrackName 6s linear infinite;
-    color: #ff0000;
-}
-
-@keyframes scrollTrackName {
-    0% { transform: translateX(100%); }
-    100% { transform: translateX(-100%); }
-}
-
-.cd-controls {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.cd-control-btn {
-    background: transparent;
-    border: none;
-    color: #ffffff;
-    opacity: 0.65;
-    font-family: 'Courier New', monospace;
-    font-size: 0.72rem;
-    font-weight: 900;
-    letter-spacing: 0.05em;
-    cursor: pointer;
-    padding: 0;
-    transition: color 0.2s ease, opacity 0.2s ease;
-}
-
-.cd-control-btn:hover {
-    color: #ff0000 !important;
-    opacity: 1;
-}
-
-.status-indicator {
-    width: 8px;
-    height: 8px;
-    background-color: #252525;
-    border-radius: 0%;
-    transition: background-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.status-indicator.active {
-    background-color: #ff0000 !important;
-    box-shadow: 0 0 8px #ff0000 !important;
-}
-
-.tag, .time-stamp, .nav-status, .metric-label, .marquee-content span, .status-badge {
-    font-family: 'Courier New', monospace !important;
-    letter-spacing: 0.1em;
-}
-
-/* =================================================================
- * INTERACTIVE RUGGED ACCORDION EXTENSIONS
+ * INTERACTIVE SPY ACCORDION GRIDS
  * ================================================================= */
 .interactive-accordion-grid {
     display: flex !important;
@@ -639,7 +571,7 @@ footer {
 }
 
 .accordion-item:hover .accordion-trigger h2 {
-    color: #ff0000;
+    color: #ffcc00;
 }
 
 .project-headline {
@@ -662,22 +594,20 @@ footer {
 
 .accordion-item.is-expanded .accordion-icon {
     transform: rotate(45deg);
-    color: #ff0000;
+    color: #ffcc00;
 }
 
-/* Status Badges */
 .status-badge {
     font-family: 'Impact', sans-serif !important;
     font-size: 0.75rem;
     padding: 4px 12px;
-    border-radius: 0px;
     text-transform: uppercase;
 }
 
 .status-badge.active-work {
-    background-color: rgba(255, 0, 0, 0.2);
-    color: #ff0000;
-    border: 2px solid #ff0000;
+    background-color: rgba(255, 204, 0, 0.15);
+    color: #ffcc00;
+    border: 2px solid #ffcc00;
 }
 
 .status-badge.secure-lock {
@@ -686,7 +616,6 @@ footer {
     border: 2px solid #ffffff;
 }
 
-/* Slide Drawer Elements */
 .accordion-content {
     height: 0;
     overflow: hidden;
@@ -698,11 +627,10 @@ footer {
 
 .content-inner {
     padding: 10px 35px 50px 35px;
-    border-top: 2px dashed #ff0000;
+    border-top: 2px dashed #ffcc00;
     box-sizing: border-box;
 }
 
-/* Grid Layout Splitting Panels */
 .project-details-dossier {
     grid-template-columns: 1fr !important;
     gap: 35px !important;
@@ -718,19 +646,18 @@ footer {
 .dossier-block h3 {
     font-family: 'Impact', sans-serif;
     font-size: 1.1rem;
-    color: #ff0000;
+    color: #ffcc00;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     margin: 0 0 15px 0;
 }
 
-.dossier-block p {
+.dossier-block p, .dossier-block li {
     font-family: 'Courier New', monospace;
     font-size: 1rem;
     line-height: 1.7;
     color: #ffffff;
     opacity: 0.9;
-    margin: 0;
 }
 
 .dossier-block ul {
@@ -739,23 +666,17 @@ footer {
 }
 
 .dossier-block li {
-    font-family: 'Courier New', monospace;
-    font-size: 1rem;
-    line-height: 1.8;
-    color: #ffffff;
-    opacity: 0.9;
     margin-bottom: 8px;
 }
 
-/* Link Actions Styles */
 .git-redirect-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
     background-color: transparent;
-    color: #ff0000;
-    border: 2px solid #ff0000;
+    color: #ffcc00;
+    border: 2px solid #ffcc00;
     padding: 14px 28px;
     font-family: 'Impact', sans-serif;
     font-size: 1rem;
@@ -765,6 +686,7 @@ footer {
     overflow: hidden;
     transition: color 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease;
     z-index: 1;
+    margin-top: 25px;
 }
 
 .git-redirect-btn .btn-arrow {
@@ -780,7 +702,7 @@ footer {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #ff0000;
+    background-color: #ffcc00;
     transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
     z-index: -1;
     transform: translateY(0);
@@ -788,7 +710,7 @@ footer {
 
 .git-redirect-btn:hover {
     color: #000000;
-    border-color: #ff0000;
+    border-color: #ffcc00;
 }
 
 .git-redirect-btn:hover::before {
@@ -800,8 +722,112 @@ footer {
 }
 
 /* =================================================================
- * FRONTIER CODES RADAR MODULE
+ * PHONOGRAPH AUDIO PLAYER ACCENTS
  * ================================================================= */
+.cd-player-widget {
+    display: flex;
+    align-items: center;
+    background-color: #000000;
+    border: 2px solid #ffcc00;
+    padding: 10px 18px;
+    gap: 15px;
+    width: 290px;
+    box-sizing: border-box;
+}
+
+.cd-deck {
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
+
+.disc-media {
+    width: 100%;
+    height: 100%;
+    background: #ffcc00;
+    border: 2px solid #ffffff;
+    position: relative;
+}
+
+.disc-center-hole {
+    position: absolute;
+    width: 11px;
+    height: 11px;
+    background-color: #000000;
+    border: 1px solid #ffffff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.disc-media.spinning {
+    animation: spinDisc 2.5s linear infinite;
+}
+
+@keyframes spinDisc {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.track-marquee {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    background-color: #000000;
+    border: 1px dashed #ffcc00;
+    padding: 4px 6px;
+    box-sizing: border-box;
+}
+
+#track-title-text {
+    display: inline-block;
+    font-family: 'Impact', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+.track-marquee.scrolling #track-title-text {
+    animation: scrollTrackName 6s linear infinite;
+    color: #ffcc00;
+}
+
+@keyframes scrollTrackName {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+.cd-control-btn {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    opacity: 0.65;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    font-weight: 900;
+    cursor: pointer;
+    padding: 0;
+}
+
+.cd-control-btn:hover {
+    color: #ffcc00 !important;
+    opacity: 1;
+}
+
+.status-indicator {
+    width: 8px;
+    height: 8px;
+    background-color: #252525;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.status-indicator.active {
+    background-color: #ffcc00 !important;
+    box-shadow: 0 0 8px #ffcc00 !important;
+}
+
 .radar-scroll-module {
     display: flex;
     flex-direction: column;
@@ -812,13 +838,7 @@ footer {
     width: fit-content;
     padding: 15px 30px;
     background-color: #000000;
-    border: 2px solid #ff0000;
-    transition: border-color 0.2s ease, background-color 0.2s ease;
-}
-
-.radar-scroll-module:hover {
-    border-color: #ffffff;
-    background-color: #111113;
+    border: 2px solid #ffcc00;
 }
 
 .radar-console-text {
@@ -826,322 +846,119 @@ footer {
     font-size: 0.9rem;
     letter-spacing: 0.1em;
     color: #ffffff;
-    margin-bottom: 12px;
     text-transform: uppercase;
 }
 
-.radar-console-text .system-prompt {
-    color: #ff0000;
-    font-weight: bold;
-}
+.radar-console-text .system-prompt { color: #ffcc00; font-weight: bold; }
+.terminal-cursor { color: #ffcc00; font-weight: bold; animation: blinkTerminalCursor 0.8s steps(2, start) infinite; }
+@keyframes blinkTerminalCursor { to { visibility: hidden; } }
 
-.terminal-cursor {
-    color: #ff0000;
-    font-weight: bold;
-    animation: blinkTerminalCursor 0.8s steps(2, start) infinite;
-}
-
-.radar-pulsing-arrow {
+footer {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    animation: dipRadarArrow 2s infinite ease-in-out;
-}
-
-@keyframes blinkTerminalCursor {
-    to { visibility: hidden; }
-}
-
-@keyframes dipRadarArrow {
-    0%, 100% {
-        transform: translateY(0);
-        opacity: 0.4;
-    }
-    50% {
-        transform: translateY(6px);
-        opacity: 1;
-    }
+    justify-content: space-between;
+    padding: 45px 0;
+    border-top: 2px solid #ffffff;
+    color: #ffffff;
+    opacity: 0.4;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
 }
 
 /* =================================================================
- * MOBILE BREAKPOINT MATRIX RESET CONFIGURATIONS
+ * BREAKPOINT COMPRESSION (MOBILE RESPONSIVE GATEWAY OVERHAUL)
  * ================================================================= */
-@media (max-width: 1024px) {
-    nav {
-        flex-wrap: wrap;
-        gap: 15px;
-    }
-    .cd-player-widget {
-        width: 100%;
-        max-width: 320px;
-        margin-top: 5px;
-    }
-}
-
 @media (max-width: 768px) {
     #main-content {
-        padding: 20px 20px 60px 20px; /* Enhanced bottom padding prevents clipping */
+        padding: 20px 15px 60px 15px;
     }
 
-    #preloader {
-        background-color: #000000;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
+    /* 🟢 HARDWARE VIDEO RESPONSIVENESS OVERLAY FIX */
     #intro-video {
-        position: absolute;
-        top: 0;
+        width: auto !important;
+        height: 100% !important;
         left: 50%;
-        transform: translateX(-50%); /* Locks the gun cylinder perfectly center-frame */
-        width: auto !important;       /* Strips horizontal crushing */
-        height: 100% !important;      /* Forces video to span the full vertical axis */
-        object-fit: cover !important;  /* Wipes out narrow black letterboxes */
-        z-index: 1;
+        transform: translateX(-50%); /* Centers the absolute weapon aspect grid flawlessly on small viewports */
     }
 
-    /* Shift the data overlay down slightly so the cylinder animation handles the upper space */
     .preloader-content-wrapper {
-        position: absolute;
-        top: 55%; 
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 90%;
+        width: 92%;
         max-width: 320px;
-        z-index: 2;
     }
 
-    .preloader-title {
-        font-size: 1.5rem !important;
-        text-align: center;
-        margin-bottom: 15px;
+    #post-video-prompt {
+        width: 88%;
+        padding: 20px 25px;
     }
 
-    .code-card {
-        padding: 12px 15px;
-        background-color: rgba(0, 0, 0, 0.85); /* Tints backing so text pops cleanly over active frames */
-        border: 2px solid #ff0000;
+    #post-video-prompt h2 {
+        font-size: 1.4rem !important;
     }
 
-    nav {
-        flex-direction: column;
-        gap: 20px;
-        align-items: flex-start;
-        padding-bottom: 25px;
+    .metrics-grid, .keyword-matrix-grid { 
+        grid-template-columns: 1fr !important; 
+        gap: 16px;
     }
 
-    .nav-links {
+    nav { 
+        flex-direction: column; 
+        gap: 20px; 
+        align-items: flex-start; 
+        padding: 20px 0;
+    }
+
+    .nav-links { 
         display: flex;
-        width: 100%;
-        justify-content: flex-start;
-        margin-left: -15px;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: flex-start; 
+        margin: 0; 
+        width: 100%; 
     }
 
     .nav-links a {
-        margin: 0 15px 0 0;
-        font-size: 1rem;
+        padding: 6px 12px;
+        font-size: 0.9rem;
     }
 
-    .cd-player-widget {
-        display: flex;
-        align-items: center;
-        background-color: #000000;
-        border: 2px solid #ff0000;
-        padding: 10px 14px;
-        border-radius: 0px;
-        gap: 12px;
-        width: 290px; 
-        box-sizing: border-box;
+    .cd-player-widget { 
+        width: 100%; 
     }
 
-    .line-mask {
-        margin-bottom: 2px; /* Adds physical buffer space between layout rows */
+    .hero-section {
+        margin: 6vh 0;
     }
 
-    .reveal-title {
-        line-height: 1.0 !important; /* Forces breathing room for text rows */
+    h1.reveal-title, .hero-section h1, .hero-section .reveal-title {
+        font-size: clamp(2.4rem, 12vw, 4.5rem);
+        line-height: 1.05;
     }
 
-    .metrics-grid {
-        grid-template-columns: 1fr !important; /* Stack 1 card per row instead of forcing 2 */
-        gap: 20px;
+    .accordion-trigger { 
+        padding: 25px 15px; 
     }
 
-    .metric-card {
-        border-top: 2px solid #ffffff;
-        padding-top: 15px;
-    }
-
-    .metric-value {
-        font-size: 2rem; 
-    }
-
-    .project-details-dossier {
-        grid-template-columns: 1fr !important;
-        gap: 35px !important;
-        width: 100% !important;
-        box-sizing: border-box;
-        margin-top: 20px !important;
-    }
-
-    .dossier-block {
-        width: 100% !important;
-        box-sizing: border-box;
-    }
-
-    .dossier-block p, 
-    .dossier-block li {
-        font-size: 1rem !important;
-        line-height: 1.6 !important;
-        max-width: 100% !important;
-    }
-
-    .interactive-accordion-grid div[style*="flex-wrap"] {
-        padding: 20px 15px !important;
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        gap: 12px !important;
-    }
-
-    .interactive-accordion-grid div[style*="flex-wrap"] span {
-        font-size: 0.85rem !important;
-    }
-
-    .interactive-accordion-grid div[style*="flex-wrap"] div[style*="Courier New"] {
-        font-size: 0.85rem !important;
-        width: 100%;
-        box-sizing: border-box;
-        word-break: break-word; 
-        white-space: normal !important;
-    }
-
-    .accordion-trigger {
-        padding: 30px 15px;
-    }
-
-    .grid-item h2 {
-        font-size: 1.8rem; 
+    .accordion-trigger h2 {
+        font-size: 1.6rem !important;
     }
 
     .project-headline {
-        font-size: 1.0rem !important;
+        font-size: 0.95rem !important;
     }
 
-    .content-inner {
-        padding: 10px 15px 40px 15px;
+    .content-inner { 
+        padding: 15px 15px 35px 15px; 
     }
 
-    .accordion-trigger div[style*="display: flex"] {
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        gap: 8px;
-    }
-
-    .git-redirect-btn {
+    .git-redirect-btn { 
         width: 100%; 
-        box-sizing: border-box;
+        box-sizing: border-box; 
     }
 
-    .radar-scroll-module {
-        width: 100%;
-        box-sizing: border-box;
-        padding: 15px;
-    }
-}
-
-@media (max-width: 500px) {
-    #main-content h1, 
-    .reveal-title {
-        font-size: 3.1rem !important; /* Hard constraint cap to ensure text stays in container boundaries */
-        line-height: 1.05 !important;
-    }
-}
-
-/* =================================================================
- * HARDWARE-ACCELERATED ACTIVE STAGE OVERLAYS
- * ================================================================= */
-#system-boot-wall {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100dvw;
-    height: 100dvh;
-    background: #000000;
-    z-index: 10000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Impact', sans-serif;
-    touch-action: manipulation;
-}
-
-.boot-prompt-box {
-    text-align: center;
-    padding: 20px;
-    width: 90%;
-    box-sizing: border-box;
-}
-
-.secure-tag {
-    font-family: 'Courier New', monospace;
-    font-size: clamp(0.7rem, 2.2vw, 0.85rem);
-    color: #ff0000;
-    font-weight: bold;
-    letter-spacing: 3px;
-    display: block;
-    margin-bottom: 15px;
-}
-
-.blink-text {
-    font-size: clamp(1.4rem, 4.5vw, 2.2rem);
-    color: #ffffff;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 900;
-    line-height: 1.3;
-    animation: bootBlink 1.2s infinite;
-}
-
-.sub-tag {
-    font-family: 'Courier New', monospace;
-    font-size: clamp(0.65rem, 1.8vw, 0.75rem);
-    color: #ffffff;
-    opacity: 0.5;
-    letter-spacing: 1px;
-    display: block;
-    margin-top: 15px;
-}
-
-@keyframes bootBlink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
-}
-
-/* =================================================================
- * HIGH-CONTRAST LAYOUT BREAKDOWN GLITCH
- * ================================================================= */
-.shattered-glitch {
-    animation: layoutFracture 0.5s cubic-bezier(0.15, 0.85, 0.35, 1) forwards;
-}
-
-@keyframes layoutFracture {
-    0% {
-        transform: scale(1) rotate(0deg);
-        filter: blur(0px) invert(0);
-    }
-    15% {
-        transform: scale(0.95) rotate(-2deg) translate(-10px, 10px);
-        filter: blur(1px) invert(1) sepia(1) hue-rotate(180deg); /* Pure red/white/black spectrum fracture */
-    }
-    35% {
-        transform: scale(0.97) rotate(1.5deg) translate(8px, -5px);
-        filter: blur(2px) saturate(4);
-    }
-    100% {
-        transform: scale(0.9) translate(0px, 60px) rotate(3deg);
-        opacity: 0;
-        filter: blur(8px) invert(0);
+    footer {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+        text-align: center;
+        padding: 30px 0;
     }
 }

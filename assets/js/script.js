@@ -6,7 +6,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     
     // =================================================================
-    // 1. GLOBAL DOM ELEMENT REGISTRY
+    // 1. GLOBAL DOM ELEMENT REGISTRY & EXISTENCE GUARDS
     // =================================================================
     const preloader = document.getElementById("preloader");
     const mainContent = document.getElementById("main-content");
@@ -24,15 +24,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const marqueeContainer = document.querySelector(".track-marquee");
 
     const isHomePage = window.location.pathname.endsWith("index.html") || window.location.pathname === "/" || !window.location.pathname.includes(".html");
-    const introPlayed = sessionStorage.getItem("rdr2IntroPlayed") === "true";
+    const introPlayed = sessionStorage.getItem("mi6IntroPlayed") === "true";
 
     let lenisEngine = null;
     let autoLoadTriggered = false; 
     let systemUnlocked = false; 
+    let videoTimelineFinished = false; 
+    let globalDustAnimationId = null; 
 
     const isMobileDevice = window.innerWidth <= 768;
 
-    if (!isHomePage || introPlayed) {
+    // 🟢 STRUCTURAL GUARD: If not on Home OR if preloader elements are missing, bypass introduction timelines instantly
+    if (!isHomePage || introPlayed || !preloader || !videoPlayer) {
         bypassPreloaderSequence();
         initializeCoreSiteFeatures();
         return;
@@ -41,16 +44,14 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.add("no-scroll");
 
     // =================================================================
-    // 2. VIDEO TIMELINE & SOUND SYNC CORE ENGINE (AMERICAN VENOM PIPELINE)
+    // 2. MI6 SURVEILLANCE TIMELINE & HARDWARE UNMUTED SOUND ENGINE
     // =================================================================
     function initializeSystemUplink(e) {
         if (systemUnlocked) return;
-        // Native Keyboard Filter Guard
         if (e.type === "keydown" && e.key !== " " && e.key !== "Enter") return;
         
         systemUnlocked = true;
 
-        // Slide away interaction panel cleanly
         if (bootWall) {
             gsap.to(bootWall, {
                 opacity: 0,
@@ -59,36 +60,16 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        // 🟢 INTERACTION SYNCHRONIZATION: Fire American Venom immediately
-        if (audioTrack) {
-            audioTrack.muted = false;
-            audioTrack.volume = 0.45; // Clean, non-clipping balanced mix level
-            audioTrack.currentTime = 0; // Forces playback from the absolute start frame
-            
-            audioTrack.play()
-                .then(() => {
-                    console.log("Audio Track Sync: 'American Venom' deployed cleanly inside interaction loop.");
-                    setPlayerActiveUI();
-                    localStorage.setItem("portfolio-audio-active", "true");
-                })
-                .catch(err => {
-                    console.log("Audio engine gate blocked immediate track initialization:", err);
-                    setPlayerPassiveUI();
-                });
-        }
-
-        // 🟢 VISUAL PIPELINE: Launch intro video frames in parallel
         if (videoPlayer) {
             videoPlayer.style.display = "block";
             videoPlayer.currentTime = 0;
-            
-            // Video component must remain muted to seamlessly pass mobile data-saving policies
             videoPlayer.muted = true; 
             
             videoPlayer.play().then(() => {
-                console.log("Visual pipeline active. Syncing rendering parameters over audio master.");
+                console.log("Visual pipeline active. Executing hardware audio unblock...");
+                videoPlayer.muted = false;
+                videoPlayer.volume = 0.85; 
                 
-                // TYPEWRITER DELAY OFFSET MATRIX
                 setTimeout(() => {
                     if (!autoLoadTriggered) {
                         autoLoadTriggered = true;
@@ -96,20 +77,51 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 }, 2200);
             }).catch(error => {
-                console.log("Hardware media pipeline stalled, forcing fallback stream:", error);
+                console.log("Hardware media pipeline stalled, routing automatic grid release:", error);
                 triggerExitSequence(); 
             });
 
-            // Fires the exact frame the video sequence finishes
             videoPlayer.onended = () => {
-                triggerExitSequence();
+                videoTimelineFinished = true;
+                
+                const postPrompt = document.getElementById("post-video-prompt");
+                if (postPrompt) {
+                    postPrompt.style.display = "block";
+                }
+                
+                if (audioTrack) {
+                    audioTrack.muted = false;
+                    audioTrack.volume = 0.40; 
+                    audioTrack.currentTime = 0;
+                    audioTrack.play().then(() => {
+                        setPlayerActiveUI();
+                        localStorage.setItem("portfolio-audio-active", "true");
+                    }).catch(() => {});
+                }
+                
+                window.addEventListener("keydown", finalizeGateAccess);
+                window.addEventListener("click", finalizeGateAccess);
+                window.addEventListener("touchstart", finalizeGateAccess, { passive: true });
             };
         } else {
             triggerExitSequence();
         }
     }
 
-    // Connect global interaction listeners
+    function finalizeGateAccess(e) {
+        if (!videoTimelineFinished) return;
+        if (e.type === "keydown" && e.key !== "Enter") return;
+
+        window.removeEventListener("keydown", finalizeGateAccess);
+        window.removeEventListener("click", finalizeGateAccess);
+        window.removeEventListener("touchstart", finalizeGateAccess);
+
+        const postPrompt = document.getElementById("post-video-prompt");
+        if (postPrompt) postPrompt.remove();
+
+        triggerExitSequence();
+    }
+
     window.addEventListener("keydown", initializeSystemUplink);
     window.addEventListener("click", initializeSystemUplink);
     window.addEventListener("touchstart", initializeSystemUplink, { passive: true });
@@ -122,9 +134,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // =================================================================
-    // 3. DEAD EYE TERMINAL TYPEWRITER EXTENSION
+    // 3. MI6 INTELLIGENCE CLASSIFIED TYPEWRITER EXTENSION
     // =================================================================
-    const phraseloop = ["targeting...", "dead eye locked...", "execution complete."];
+    const phraseloop = ["authenticating agent 007...", "licence to kill verified.", "access granted."];
     let loopIdx = 0;
     let charIdx = 0;
     let isDeleting = false;
@@ -159,7 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 4. COORDINATED PAGE INCOMING REVEAL OVERLAY
     // =================================================================
     function triggerExitSequence() {
-        sessionStorage.setItem("rdr2IntroPlayed", "true");
+        sessionStorage.setItem("mi6IntroPlayed", "true");
         document.body.classList.remove("no-scroll");
         if (skipBtn) skipBtn.remove();
 
@@ -193,6 +205,11 @@ document.addEventListener("DOMContentLoaded", () => {
             mainContent.style.opacity = "1";
             mainContent.style.transform = "none";
         }
+        const hiddenTitles = document.querySelectorAll(".reveal-title");
+        hiddenTitles.forEach(title => {
+            title.style.transform = "translateY(0%)";
+            title.style.transition = "none"; // Bypasses active animation delays on direct page loads
+        });
     }
 
     // =================================================================
@@ -312,7 +329,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const radarTarget = document.getElementById("radar-typewriter");
         if (!radarTarget) return;
 
-        const radarPhrases = ["scanning perimeter...", "tracking project registries...", "dead eye coordinates set."];
+        const radarPhrases = ["scanning mainframe database...", "mapping active tactical registers...", "007 biometric feed secure."];
         let phraseIdx = 0;
         let letterIdx = 0;
         let isClearing = false;
@@ -343,7 +360,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function setPlayerActiveUI() {
         if(audioBtn && cdDisc && statusLight && marqueeContainer) {
             audioBtn.innerText = "// BLOCK ACTIVE";
-            audioBtn.style.color = "#ff0000"; 
+            audioBtn.style.color = "#ffcc00"; 
             cdDisc.classList.add("spinning");
             statusLight.classList.add("active");
             marqueeContainer.classList.add("scrolling");
@@ -362,7 +379,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function initIsolatedAudioTrack() {
         if (audioTrack && audioBtn && cdDisc && statusLight && marqueeContainer) {
-            // Background site ambient level setting
             audioTrack.volume = 0.35;
 
             const shouldBePlaying = localStorage.getItem("portfolio-audio-active") === "true";
@@ -393,4 +409,108 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
     }
+
+    // =================================================================
+    // 6. PAUSE INTERFACE: HARDWARE-SAFE GOLD DUST CANVAS ENGINE
+    // =================================================================
+    function initPauseAmbientParticles() {
+        const canvas = document.getElementById("pause-ambient-particles");
+        if (!canvas) return;
+
+        if (window.ambientDustEngineRunning) return;
+        window.ambientDustEngineRunning = true;
+
+        const ctx = canvas.getContext("2d");
+        let particlesArray = [];
+        
+        const throttlingCap = isMobileDevice ? 20 : 45;
+        const sizeBound = isMobileDevice ? 1.5 : 2.5;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener("resize", resizeCanvas);
+
+        class Particle {
+            constructor() {
+                this.reset();
+                this.y = Math.random() * canvas.height;
+            }
+            reset() {
+                const horizontalMargin = isMobileDevice ? canvas.width * 0.70 : canvas.width * 0.45;
+                this.x = Math.random() * horizontalMargin;
+                this.y = canvas.height + Math.random() * 20;
+                this.size = Math.random() * sizeBound + 0.5;
+                this.speedX = Math.random() * 0.2 - 0.1;
+                this.speedY = -(Math.random() * 0.4 + 0.15);
+
+                const colorRoll = Math.random();
+                if (colorRoll > 0.6) {
+                    this.color = "rgba(255, 204, 0, " + (Math.random() * 0.35 + 0.1) + ")";
+                } else if (colorRoll > 0.2) {
+                    this.color = "rgba(200, 160, 40, " + (Math.random() * 0.25 + 0.1) + ")";
+                } else {
+                    this.color = "rgba(255, 255, 255, " + (Math.random() * 0.4 + 0.1) + ")";
+                }
+                this.alphaGrowth = Math.random() * 0.008 + 0.003;
+                this.opacity = 0;
+                this.maxOpacity = Math.random() * 0.45 + 0.1;
+                this.shimmer = Math.random() > 0.5;
+            } 
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.opacity < this.maxOpacity) {
+                    this.opacity += this.alphaGrowth;
+                }
+                if (this.shimmer && !isMobileDevice) {
+                    this.opacity += (Math.random() * 0.06 - 0.03);
+                    if (this.opacity < 0.05) this.opacity = 0.05;
+                    if (this.opacity > this.maxOpacity) this.opacity = this.maxOpacity;
+                }
+                if (this.y < -10 || this.x < -10 || this.x > canvas.width + 10) {
+                    this.reset();
+                }
+            }
+            draw(){
+                ctx.save();
+                ctx.globalAlpha = this.opacity;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+        
+        function init(){
+            particlesArray = [];
+            for (let i = 0; i < throttlingCap; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+        
+        function animate(){
+            if (!document.getElementById("pause-ambient-particles")) {
+                cancelAnimationFrame(globalDustAnimationId);
+                window.ambientDustEngineRunning = false;
+                return;
+            }
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+            }
+            globalDustAnimationId = requestAnimationFrame(animate);
+        }
+        init();
+        animate();
+    }
+    
+    initPauseAmbientParticles();
 });

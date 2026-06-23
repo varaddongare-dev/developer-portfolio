@@ -3,53 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Terminal // Varad</title>
-    <link rel="stylesheet" href="assets/css/style.css?v=1.2">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2215%22 fill=%22%23000000%22/><text x=%2250%%22 y=%2265%%22 font-family=%22Impact, sans-serif%22 font-weight=%22bold%22 font-size=%2242%22 fill=%22%23ff0000%22 text-anchor=%22middle%22>RDR2</text></svg>">
+    <title>DEV PORTFOLIO</title>
+    <link class="portfolio-stylesheet" rel="stylesheet" href="assets/css/style.css?v=1.3">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2215%22 fill=%22%23000000%22/><text x=%2250%%22 y=%2265%%22 font-family=%22Impact, sans-serif%22 font-weight=%22bold%22 font-size=%2242%22 fill=%22%23ffcc00%22 text-anchor=%22middle%22>007</text></svg>">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js" defer></script>
-    <script src="assets/js/script.js?v=1.2" defer></script>
+    <script src="assets/js/script.js?v=1.3" defer></script>
 </head>
 <body>
 
     <div id="preloader">
-        <div id="system-boot-wall">
-            <div class="boot-prompt-box">
-                <span class="secure-tag">OUTLAWS FOR LIFE // REBEL SYSTEM ACCESS</span>
-                <h1 class="blink-text">> PRESS ANY KEY TO DRAW WEAPON</h1>
-                <span class="sub-tag">[ CLICK SCREEN OR TAP SPACEBAR TO COCK HAMMER ]</span>
-            </div>
+        <video id="intro-video" muted playsinline preload="auto" style="display: none;">
+            <source src="assets/video/bond_intro_video.mp4" type="video/mp4">
+        </video>
+        <div id="system-boot-wall" class="boot-prompt-box">
+            <span class="secure-tag">SECURE NETWORK SUBSYSTEM // MI6</span>
+            <h2 class="blink-text">[ CLICK OR PRESS ENTER TO INITIALIZE HANDSHAKE ]</h2>
+            <span class="sub-tag">WARNING: CLASSIFIED DATA FIELDS STREAMING INTERCEPT ON ENGAGEMENT</span>
         </div>
-
-        <video id="intro-video" playsinline webkit-playsinline x5-playsinline preload="auto" style="display: none;">
-    <source src="audio/rdr 2 intro.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-</video>
-
-        <div class="preloader-content-wrapper">
-            <div class="preloader-title">OUTLAW DEPLOYMENT PROTOCOLS</div>
+        <div class="preloader-content-wrapper" style="opacity: 0;">
+            <h1 class="preloader-title">SURVEILLANCE LOG</h1>
             <div class="code-card">
-                <header>
-                    <div class="circle red"></div>
-                    <div class="circle yellow"></div>
-                    <div class="circle green"></div>
-                </header>
-                <div class="typing-container">
-                    <span class="orange-text">.outlaw_core</span> {<br>
-                    &nbsp;&nbsp;targeting: <span class="blue-text">active</span>;<br>
-                    &nbsp;&nbsp;framework: <span class="blue-text">rdr2_engine</span>;<br>
-                    &nbsp;&nbsp;execution: <span id="typing-text" style="color: #ff0000; font-weight: bold;"></span>;<br>
-                    }
-                </div>
+                <header><div class="circle red"></div><div class="circle yellow"></div><div class="circle green"></div></header>
+                <p class="code-line"><span class="orange-text">system_status:</span> <span class="blue-text">"intercepting_feed"</span></p>
+                <p class="code-line"><span class="orange-text">surveillance_matrix:</span> <span class="blue-text">"active"</span></p>
+                <p class="code-line"><span class="orange-text">telemetry_data:</span> <span id="typing-text"></span><span class="terminal-cursor">|</span></p>
             </div>
         </div>
-        <button id="skip-intro-btn">// BYPASS DEAD EYE</button>
+        <div id="post-video-prompt" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; text-align: center;">
+            <span style="font-family: 'Courier New', monospace; font-size: 0.85rem; color: #ffcc00; font-weight: bold; letter-spacing: 3px; display: block; margin-bottom: 10px;">MISSION DEPLOYMENT TERMINAL</span>
+            <h2 class="blink-text" style="font-family: 'Impact', sans-serif; font-size: 2rem; color: #ffffff; text-transform: uppercase; margin: 0; letter-spacing: 2px;">[ PRESS ENTER OR CLICK TO ENTER ]</h2>
+        </div>
+        <button id="skip-intro-btn">BYPASS COMM LINE</button>
     </div>
 
-    <div id="main-content" style="display: none; opacity: 0;">
+    <div id="main-content">
         <nav>
-            <div class="time-stamp">// CORE INFRASTRUCTURE</div>
+            <div class="time-stamp">MI6 // DATA DIRECTORY</div>
             <div class="nav-links">
                 <a href="index.html" class="active">Home</a>
                 <a href="project.html">Projects</a>
@@ -58,16 +49,10 @@
             </div>
             
             <div class="cd-player-widget">
-                <audio id="portfolio-audio" src="audio/American Venom.mp3" loop></audio>
-                <div class="cd-deck">
-                    <div id="cd-disc" class="disc-media">
-                        <div class="disc-center-hole"></div>
-                    </div>
-                </div>
+                <audio id="portfolio-audio" src="audio/Goldeneye Pause music.mp3" loop></audio>
+                <div class="cd-deck"><div id="cd-disc" class="disc-media"><div class="disc-center-hole"></div></div></div>
                 <div class="cd-metadata">
-                    <div class="track-marquee">
-                        <span id="track-title-text">RED DEAD REDEMPTION 2</span>
-                    </div>
+                    <div class="track-marquee"><span id="track-title-text">GOLDENEYE // PAUSE DECK</span></div>
                     <div class="cd-controls">
                         <button id="audio-toggle-btn" class="cd-control-btn">// PLAY INTERCEPT</button>
                         <span id="cd-status-light" class="status-indicator"></span>
@@ -77,60 +62,47 @@
         </nav>
 
         <section class="hero-section">
-            <div class="line-mask">
-                <h1 class="reveal-title">AI & DATA</h1>
-            </div>
-            <div class="line-mask">
-                <h1 class="reveal-title">SYSTEMS</h1>
-            </div>
-            <div class="line-mask">
-                <h1 class="reveal-title">INTELLIGENCE</h1>
-            </div>
+            <div class="line-mask"><h1 class="reveal-title">VARAD</h1></div>
+            <div class="line-mask"><h1 class="reveal-title">DONGARE</h1></div>
+            <div class="line-mask"><h1 class="reveal-title">SOFTWARE DEVELOPER</h1></div>
         </section>
 
-        <section class="metrics-section target-fade">
+        <section class="metrics-section target-fade" style="border-top: 2px solid #ffcc00; padding-top: 30px;">
             <div class="metrics-header">
-                <h2>Data that speaks. AI that reasons. Software that ships.</h2>
-                <p>System configuration matrices and execution parameters.</p>
+                <h2>OPERATIONAL DESIGNATION</h2>
+                <p>System microarchitectures and event-driven automation frameworks executing cleanly at the core layer.</p>
             </div>
-            <div class="metrics-grid">
-                <div class="metric-card">
-                    <span class="metric-label">SYSTEMS EXECUTION</span>
-                    <span class="metric-value">Asynchronous</span>
+            <div class="keyword-matrix-grid">
+                <div class="keyword-item">
+                    <h4>ASYNCHRONOUS AUTOMATION</h4>
+                    <p style="margin:0; font-size:0.9rem; opacity:0.8; line-height:1.5;">Non-blocking I/O event loops, distributed webhooks handling, scalable webhook structures, and low-latency payload parsing pipelines.</p>
                 </div>
-                <div class="metric-card">
-                    <span class="metric-label">CORE ENGINES</span>
-                    <span class="metric-value">C++ / Python</span>
+                <div class="keyword-item">
+                    <h4>SYSTEM ARCHITECTURE</h4>
+                    <p style="margin:0; font-size:0.9rem; opacity:0.8; line-height:1.5;">Low-overhead system polling, real-time hardware telemetry compilers, algorithmic calculation matrices, and manual memory pointer boundary logic.</p>
                 </div>
-                <div class="metric-card">
-                    <span class="metric-label">SYSTEM TELEMETRY</span>
-                    <span class="metric-value">Live Dash</span>
-                </div>
-                <div class="metric-card">
-                    <span class="metric-label">AUTOMATION CORES</span>
-                    <span class="metric-value">Node / Webhooks</span>
+                <div class="keyword-item">
+                    <h4>INTELLIGENT BOT ENGINE</h4>
+                    <p style="margin:0; font-size:0.9rem; opacity:0.8; line-height:1.5;">Upstream REST integration gateways, secure application session states, contextual LLM parsing matrices, and structured command interpreters.</p>
                 </div>
             </div>
         </section>
 
-        <section class="marquee-section target-fade">
-            <div class="marquee-wrapper">
-                <div class="marquee-content">
-                    <span>NODE.JS //</span><span>PYTHON //</span><span>C++ //</span><span>EXPRESS //</span><span>FLASK //</span><span>PANDAS //</span>
-                    <span>NODE.JS //</span><span>PYTHON //</span><span>C++ //</span><span>EXPRESS //</span><span>FLASK //</span><span>PANDAS //</span>
-                </div>
-            </div>
-        </section>
-
-        <section class="redirect-section target-fade">
+        <section class="redirect-section target-fade" style="margin: 4vh 0 8vh 0; border: none; padding: 0;">
             <div class="redirect-container">
-                <p>Explore full system technical architectures, private source repositories, and secure execution binaries across five baseline full-stack modules.</p>
+                <p>My primary goal as a developer is to perceive creative thoughts and translate them into reality using advanced AI automation tools, background web bots, and standalone software frameworks.</p>
                 <a href="project.html" class="animated-btn">
-                    <span class="btn-text">DECRYPT PROJECT REGISTRY</span>
-                    <span class="btn-arrow">→</span>
+                    <span>DECRYPT REPOSITORY MATRIX</span>
+                    <span class="btn-arrow">↗</span>
                 </a>
             </div>
         </section>
+
+        <a href="project.html" style="display: block; width: fit-content; margin: 0 auto;">
+            <div class="radar-scroll-module">
+                <div class="radar-console-text"><span class="system-prompt">SYS_RADAR //</span> <span id="radar-typewriter"></span><span class="terminal-cursor">|</span></div>
+            </div>
+        </a>
 
         <footer>
             <div>MIT-WPU PUNE // IN</div>
