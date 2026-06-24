@@ -519,4 +519,71 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     
     initPauseAmbientParticles();
+
+    // =================================================================
+    // 7. INTERACTIVE THREE.JS WEBGL MAINFRAME ENGINE
+    // =================================================================
+    function initWebGLMainframe() {
+        const canvas = document.getElementById("webgl-mainframe-canvas");
+        if (!canvas) return;
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1 ,1000);
+        camera.position.z = 5;
+
+        const renderer = new THREE.WebGLRenderer({
+            canvas: canvas,
+            antialias: true,
+            alpha: true
+        });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRaTION(Math.min(window.devicePixelRatio, 2));
+
+        const geometry = new THREE.IcosahedronGeometry(2, 1);
+        const material = new THREE.MeshBasicMaterial({
+            color: 0xffcc00,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.15
+        });
+        const tacticalMesh = new THREE.Mesh(geometry, material);
+        scene.add(tacticalMesh);
+
+        let mouseX = 0, mouseY = 0;
+        let targetX = 0, targetY = 0;
+
+        window.addEventListener("mousemove", (e) => {
+            mouseX = (e.clientX - window.innerWidth / 2) / 100;
+            mouseY = (e.clientY - window.innerHeight / 2) / 100;
+        });
+        window.addEventListener("scroll", () => {
+            const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+            gsap.to(camera.position, {
+                y: -scrollPercent * 4,
+                duration: 0.8,
+                ease: "power2.out"
+            });
+        });
+        window.addEventListener("resize", () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+        function renderFrame() {
+            requestAnimationFrame(renderFrame);
+
+            tacticalMesh.rotation.y += 0.002;
+            tacticalMesh.rotation.x += 0.001;
+
+            targetX += (mouseX - targetX) * 0.05;
+            targetY += (mouseY - targetY) * 0.05;
+
+            tacticalMesh.rotation.y += targetX * 0.1;
+            tacticalMesh.rotation.x += targetY * 0.1;
+
+            renderer.render(scene, camera);
+        }
+        renderFrame();
+    }
+    initWebGLMainframe();
 });
