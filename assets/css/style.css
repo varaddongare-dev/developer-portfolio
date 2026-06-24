@@ -960,4 +960,14 @@ footer {
         text-align: center;
         padding: 30px 0;
     }
+    .grid-item.accordion-item {
+        background: transparent !important;
+    }
+    .accordion-content {
+        background: #000000 !important;
+        color: #ffffff !important;
+    }
+    .content-inner {
+        background: transparent !important;
+    }
 }
