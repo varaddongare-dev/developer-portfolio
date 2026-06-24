@@ -259,17 +259,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const accordionGrid = document.querySelector(".interactive-accordion-grid");
         
-        gsap.from(".accordion-item", {
-            opacity: 0,
-            y: 40,
-            duration: 1,
-            stagger: 0.15,
-            ease: "power3.out",
-            scrollTrigger: accordionGrid ? {
-                trigger: ".interactive-accordion-grid",
-                start: "top 85%"
-            } : undefined
-        });
+        // 1. Only run the slide-in staggered entries if we aren't on mobile
+        if (!isMobileDevice) {
+            gsap.from(".accordion-item", {
+                opacity: 0,
+                y: 40,
+                duration: 1,
+                stagger: 0.15,
+                ease: "power3.out",
+                scrollTrigger: accordionGrid ? {
+                    trigger: ".interactive-accordion-grid",
+                    start: "top 85%"
+                } : undefined
+            });
+        }
 
         accordionItems.forEach(item => {
             const trigger = item.querySelector(".accordion-trigger");
@@ -286,6 +289,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 freshTrigger.addEventListener("click", (e) => {
                     e.preventDefault();
+                    
+                    // 🟢 SAFETY GATE: If on mobile, let CSS handle display logic completely
+                    if (window.innerWidth <= 768) return;
+
                     const isExpanded = item.classList.contains("is-expanded");
 
                     accordionItems.forEach(otherItem => {
@@ -324,7 +331,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
-
     function initRadarTelemetryTypewriter() {
         const radarTarget = document.getElementById("radar-typewriter");
         if (!radarTarget) return;
