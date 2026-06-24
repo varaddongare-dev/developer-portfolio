@@ -684,8 +684,9 @@ h1.reveal-title, .hero-section h1, .hero-section .reveal-title {
     position: relative;
     overflow: hidden;
     transition: color 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease;
-    z-index: 1;
+    z-index: 10 !important; /* Pulls it forward so it's clickable over the 3D canvas */
     margin-top: 25px;
+    cursor: pointer;
 }
 
 .git-redirect-btn .btn-arrow {
@@ -949,8 +950,16 @@ footer {
     }
 
     .git-redirect-btn { 
-        width: 100%; 
-        box-sizing: border-box; 
+        display: flex !important;
+        width: 100% !important; /* Spans across the card base */
+        background-color: #ffcc00 !important; /* Fills button solid yellow */
+        color: #000000 !important; /* Drops text to high-contrast black */
+        border: none !important;
+        margin-top: 20px !important;
+        box-sizing: border-box;
+    }
+    .git-redirect-btn span {
+        color: #000000 !important;
     }
 
     footer {
@@ -964,19 +973,64 @@ footer {
         height: auto !important;
         min-height: fit-content !important;
         display: flex;
-        flex-direction: none;
+        flex-direction: column;
+        margin-bottom: 24px; /* Creates spacing between stacked project cards */
         overflow: visible !important;
+        background: rgba(255, 255, 255, 0.03) !important; /* Subtle dark tactical panel tint */
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 16px;
+        border-radius: 4px;
     }
     .accordion-content {
-        max-height: none !important;
         display: block !important;
+        height: auto !important;
+        max-height: none !important; 
         opacity: 1 !important;
         visibility: visible !important;
+        overflow: visible !important;
     }
     .accordion-icon {
-        display: none !important;
+       display: none !important;
     }
     .content-inner {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
         background: transparent !important;
     }
+    #webgl-mainframe-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+        pointer-events: none;
+        background: #050505;
+    }
+    #main-content, .grid-item.accordion-item {
+        background: transparent !important;
+    }
+    .accordion-trigger h2,
+    .project-headline,
+    .dossier-block h3,
+    .dossier-block p,
+    .dossier-block li {
+        position: relative !important;
+        z-index: 10 !important;
+        color: #ffffff !important;
+    }
+    .accordion-trigger {
+        position: relative;
+        z-index: 5;
+    }
+    .interactive-accordion-grid,
+    .grid-item,
+    .accordion-item,
+    .accordion-trigger,
+    .accordion-content,
+    .content-inner {
+    background-color: transparent !important;
+    background: transparent !important;
+}
 }
