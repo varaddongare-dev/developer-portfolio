@@ -1,4 +1,4 @@
-# **DEVELOPER-PORTFOLIO // MI6 MAINBOARD COMMAND INTERFACE** #
+# **DEVELOPER-PORTFOLIO** #
 A high-contrast, performance-tuned web terminal architecture engineered to serve as a low-overhead visual deployment and technical repository matrix showcase. This interface eliminates bulky tracking frameworks in favor of direct DOM manipulation paths, synchronized layout audio widgets, and native hardware-accelerated video tracking layers.
 
 ```bash
