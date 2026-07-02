@@ -208,7 +208,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const hiddenTitles = document.querySelectorAll(".reveal-title");
         hiddenTitles.forEach(title => {
             title.style.transform = "translateY(0%)";
-            title.style.transition = "none"; // Bypasses active animation delays on direct page loads
+            title.style.transition = "none"; 
         });
     }
 
@@ -259,7 +259,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const accordionGrid = document.querySelector(".interactive-accordion-grid");
         
-        // 1. Only run the slide-in staggered entries if we aren't on mobile
         if (!isMobileDevice) {
             gsap.from(".accordion-item", {
                 opacity: 0,
@@ -290,8 +289,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 freshTrigger.addEventListener("click", (e) => {
                     e.preventDefault();
                     
-                    // 🟢 SAFETY GATE: If on mobile, let CSS handle display logic completely
-                    if (window.innerWidth <= 768) return;
+                    // 🟢 FIX: Let unified global variable manage early mobile return mechanics
+                    if (isMobileDevice) return;
 
                     const isExpanded = item.classList.contains("is-expanded");
 
@@ -331,6 +330,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+
     function initRadarTelemetryTypewriter() {
         const radarTarget = document.getElementById("radar-typewriter");
         if (!radarTarget) return;
@@ -528,7 +528,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!canvas) return;
 
         const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1 ,1000);
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         camera.position.z = 5;
 
         const renderer = new THREE.WebGLRenderer({
@@ -537,7 +537,9 @@ document.addEventListener("DOMContentLoaded", () => {
             alpha: true
         });
         renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRaTION(Math.min(window.devicePixelRatio, 2));
+        
+        // 🟢 FIX: Converted lowercase typo 'setPixelRaTION' to correct camelCase API method call
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
         const geometry = new THREE.IcosahedronGeometry(2, 1);
         const material = new THREE.MeshBasicMaterial({

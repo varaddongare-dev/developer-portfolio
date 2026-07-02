@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Courier+New:wght@400;700&family=Impact&family=Noto+Sans+JP:wght@400;700;900&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2215%22 fill=%22%23000000%22/><text x=%2250%%22 y=%2265%%22 font-family=%22Impact, sans-serif%22 font-weight=%22bold%22 font-size=%2242%22 fill=%22%23ffcc00%22 text-anchor=%22middle%22>007</text></svg>">
 
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css?v=2.0">
@@ -15,49 +16,65 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js" defer></script>
-    <script src="https://cdnjs.cloudfare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+    
     <script src="/assets/js/script.js?v=2.2" defer></script>
 </head>
 <body>
 
     <div id="preloader">
         <video id="intro-video" muted playsinline preload="auto" style="display: none;">
-            <source src="assets/video/SPECTRE (2015) Gunbarrel Sequence - Daniel Craig ｜ James Bond 007.mp4" type="video/mp4">
+            <source src="assets/video/intro.mp4" type="video/mp4">
         </video>
+        
         <div id="system-boot-wall" class="boot-prompt-box">
             <span class="secure-tag">SECURE NETWORK SUBSYSTEM // MI6</span>
             <h2 class="blink-text">[ CLICK OR PRESS ENTER TO INITIALIZE HANDSHAKE ]</h2>
             <span class="sub-tag">WARNING: CLASSIFIED DATA FIELDS STREAMING INTERCEPT ON ENGAGEMENT</span>
         </div>
+        
         <div class="preloader-content-wrapper" style="opacity: 0;">
             <h1 class="preloader-title">SURVEILLANCE LOG</h1>
             <div class="code-card">
-                <header><div class="circle red"></div><div class="circle yellow"></div><div class="circle green"></div></header>
+                <header>
+                    <div class="circle red"></div>
+                    <div class="circle yellow"></div>
+                    <div class="circle green"></div>
+                </header>
                 <p class="code-line"><span class="orange-text">system_status:</span> <span class="blue-text">"intercepting_feed"</span></p>
                 <p class="code-line"><span class="orange-text">surveillance_matrix:</span> <span class="blue-text">"active"</span></p>
                 <p class="code-line"><span class="orange-text">telemetry_data:</span> <span id="typing-text"></span><span class="terminal-cursor">|</span></p>
             </div>
         </div>
+        
         <div id="post-video-prompt" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; text-align: center;">
             <span style="font-family: 'Courier New', monospace; font-size: 0.85rem; color: #ffcc00; font-weight: bold; letter-spacing: 3px; display: block; margin-bottom: 10px;">MISSION DEPLOYMENT TERMINAL</span>
             <h2 class="blink-text" style="font-family: 'Impact', sans-serif; font-size: 2rem; color: #ffffff; text-transform: uppercase; margin: 0; letter-spacing: 2px;">[ PRESS ENTER OR CLICK TO ENTER ]</h2>
         </div>
+        
         <button id="skip-intro-btn">BYPASS COMM LINE</button>
     </div>
 
     <div id="main-content">
+        <canvas id="pause-ambient-particles"></canvas>
+        <canvas id="webgl-mainframe-canvas"></canvas>
+
         <nav>
             <div class="time-stamp">Main Page</div>
             <div class="nav-links">
-                <a href="/" class="active">Home</a>
+                <a href="/index" class="active">Home</a>
                 <a href="/project">Projects</a>
                 <a href="/about">About</a>
                 <a href="/contact">Contact</a>
             </div>
             
             <div class="cd-player-widget">
-                <audio id="portfolio-audio" src="audio/Goldeneye Pause music.mp3" loop></audio>
-                <div class="cd-deck"><div id="cd-disc" class="disc-media"><div class="disc-center-hole"></div></div></div>
+                <audio id="portfolio-audio" src="assets/audio/Goldeneye Pause music.mp3" loop></audio>
+                <div class="cd-deck">
+                    <div id="cd-disc" class="disc-media">
+                        <div class="disc-center-hole"></div>
+                    </div>
+                </div>
                 <div class="cd-metadata">
                     <div class="track-marquee"><span id="track-title-text">GOLDENEYE // PAUSE DECK</span></div>
                     <div class="cd-controls">
@@ -107,7 +124,10 @@
 
         <a href="project.html" style="display: block; width: fit-content; margin: 0 auto;">
             <div class="radar-scroll-module">
-                <div class="radar-console-text"><span class="system-prompt">SYS_RADAR //</span> <span id="radar-typewriter"></span><span class="terminal-cursor">|</span></div>
+                <div class="radar-console-text">
+                    <span class="system-prompt">SYS_RADAR //</span> 
+                    <span id="radar-typewriter"></span><span class="terminal-cursor">|</span>
+                </div>
             </div>
         </a>
 

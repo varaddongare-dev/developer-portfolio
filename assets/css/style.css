@@ -863,6 +863,31 @@ footer {
     font-family: 'Courier New', monospace;
     font-size: 0.8rem;
 }
+#intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s ease-out;
+    opacity: 1;
+    overflow: hidden;
+}
+#intro-overlay video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+#intro-overlay.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
 
 /* =================================================================
  * BREAKPOINT COMPRESSION (MOBILE RESPONSIVE GATEWAY OVERHAUL)
@@ -870,6 +895,10 @@ footer {
 @media (max-width: 768px) {
     #main-content {
         padding: 20px 15px 60px 15px;
+    }
+    #intro-overlay video {
+        min-width: 100vw;
+        min-height: 100vh;
     }
 
     /* 🟢 HARDWARE VIDEO RESPONSIVENESS OVERLAY FIX */
