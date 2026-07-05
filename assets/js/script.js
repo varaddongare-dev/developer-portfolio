@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const preloaderContent = document.querySelector(".preloader-content-wrapper");
     const textElement = document.getElementById("typing-text");
     const bootWall = document.getElementById("system-boot-wall");
+    const scrollIndicator = document.getElementById("pc-scroll-indicator");
 
     // Core Layout Audio Widgets
     const audioTrack = document.getElementById("portfolio-audio");
@@ -181,6 +182,11 @@ document.addEventListener("DOMContentLoaded", () => {
             onComplete: () => {
                 if (preloader) preloader.remove();
                 initializeCoreSiteFeatures();
+                
+                // 🟢 REVEAL FIX: Fades the top fixed scroll indicator into view smoothly after intro is gone
+                if (scrollIndicator) {
+                    scrollIndicator.style.opacity = "0.7";
+                }
             }
         });
 
@@ -210,6 +216,11 @@ document.addEventListener("DOMContentLoaded", () => {
             title.style.transform = "translateY(0%)";
             title.style.transition = "none"; 
         });
+        
+        // 🟢 BYPASS REVEAL FIX: Ensures indicator displays immediately if introduction was already watched
+        if (scrollIndicator) {
+            scrollIndicator.style.opacity = "0.7";
+        }
     }
 
     // =================================================================
@@ -242,13 +253,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function initScrollAnimationTriggers() {
         gsap.registerPlugin(ScrollTrigger);
+
         const fadeTargets = document.querySelectorAll('.target-fade');
         if (fadeTargets.length > 0) {
             fadeTargets.forEach(target => {
                 gsap.from(target, {
-                    scrollTrigger: { trigger: target, start: "top 85%", toggleActions: "play none none none" },
-                    opacity: 0, y: 30, duration: 1, ease: "power2.out"
+                    scrollTrigger: {
+                        trigger: target,
+                        start: "top 85%",
+                        toggleActions: "play none none none"
+                    },
+                    opacity: 0,
+                    y: 30,
+                    duration: 1,
+                    ease: "power2.out"
                 });
+            });
+        }
+        
+        // 🟢 FIX: Added missing '#' selector indicator to hook the ID array properly
+        if (document.getElementById('pc-scroll-indicator')) {
+            gsap.to("#pc-scroll-indicator", {
+                scrollTrigger: {
+                    trigger: ".hero-section",
+                    start: "top top",
+                    end: "bottom 80%",
+                    scrub: true
+                },
+                opacity: 0,
+                y: -30,
+                pointerEvents: "none",
             });
         }
     }
@@ -289,7 +323,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 freshTrigger.addEventListener("click", (e) => {
                     e.preventDefault();
                     
-                    // 🟢 FIX: Let unified global variable manage early mobile return mechanics
                     if (isMobileDevice) return;
 
                     const isExpanded = item.classList.contains("is-expanded");
@@ -537,8 +570,6 @@ document.addEventListener("DOMContentLoaded", () => {
             alpha: true
         });
         renderer.setSize(window.innerWidth, window.innerHeight);
-        
-        // 🟢 FIX: Converted lowercase typo 'setPixelRaTION' to correct camelCase API method call
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
         const geometry = new THREE.IcosahedronGeometry(2, 1);
@@ -574,14 +605,8 @@ document.addEventListener("DOMContentLoaded", () => {
         function renderFrame() {
             requestAnimationFrame(renderFrame);
 
-            tacticalMesh.rotation.y += 0.002;
-            tacticalMesh.rotation.x += 0.001;
-
-            targetX += (mouseX - targetX) * 0.05;
-            targetY += (mouseY - targetY) * 0.05;
-
-            tacticalMesh.rotation.y += targetX * 0.1;
-            tacticalMesh.rotation.x += targetY * 0.1;
+            tacticalMesh.rotation.y += 0.0015;
+            tacticalMesh.rotation.x += 0.0008;
 
             renderer.render(scene, camera);
         }

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' ws://localhost:5500/ http://localhost:5500/ http://127.0.0.1:5500/; media-src 'self' http://localhost:5500/ http://127.0.0.1:5500/ assets/;">
     <title>DEV PORTFOLIO</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,7 +12,7 @@
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2215%22 fill=%22%23000000%22/><text x=%2250%%22 y=%2265%%22 font-family=%22Impact, sans-serif%22 font-weight=%22bold%22 font-size=%2242%22 fill=%22%23ffcc00%22 text-anchor=%22middle%22>007</text></svg>">
 
-    <link rel="stylesheet" type="text/css" href="/assets/css/style.css?v=2.0">
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css?v=3.0">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
@@ -24,7 +25,7 @@
 
     <div id="preloader">
         <video id="intro-video" muted playsinline preload="auto" style="display: none;">
-            <source src="assets/video/intro.mp4" type="video/mp4">
+            <source src="assets/video/Quantum Of Solace Gunbarrel HD.mp4" type="video/mp4">
         </video>
         
         <div id="system-boot-wall" class="boot-prompt-box">
@@ -86,10 +87,21 @@
         </nav>
 
         <section class="hero-section">
-            <div class="line-mask"><h1 class="reveal-title">VARAD</h1></div>
-            <div class="line-mask"><h1 class="reveal-title">DONGARE</h1></div>
-            <div class="line-mask"><h1 class="reveal-title">SOFTWARE DEVELOPER</h1></div>
-        </section>
+    
+    <div id="pc-scroll-indicator">
+        <span class="scroll-text">// SCROLL TO DECRYPT DOSSIER</span>
+        <div class="scroll-mouse-icon">
+            <div class="scroll-wheel-dot"></div>
+        </div>
+    </div>
+
+    <div class="hero-identity-block">
+        <div class="line-mask"><h1 class="reveal-title">VARAD</h1></div>
+        <div class="line-mask"><h1 class="reveal-title">DONGARE</h1></div>
+        <div class="line-mask"><h1 class="reveal-title">SOFTWARE DEVELOPER</h1></div>
+    </div>
+
+    </section>
 
         <section class="metrics-section target-fade" style="border-top: 2px solid #ffcc00; padding-top: 30px;">
             <div class="metrics-header">
@@ -135,7 +147,5 @@
             <div>MIT-WPU PUNE // IN</div>
             <div>© 2026 VARAD. ALL RIGHTS RESERVED.</div>
         </footer>
-    </div>
-
-</body>
+    </div> </body>
 </html>
