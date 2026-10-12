@@ -25,7 +25,7 @@
 
     <div id="preloader">
         <video id="intro-video" muted playsinline preload="auto" style="display: none;">
-            <source src="assets/video/Quantum Of Solace Gunbarrel HD.mp4" type="video/mp4">
+            <source src="/assets/video/Spectre gunbarrel sequence interpolated in 60 fps.mp4" type="video/mp4">
         </video>
         
         <div id="system-boot-wall" class="boot-prompt-box">
@@ -60,31 +60,31 @@
         <canvas id="pause-ambient-particles"></canvas>
         <canvas id="webgl-mainframe-canvas"></canvas>
 
-        <nav>
-            <div class="time-stamp">Main Page</div>
-            <div class="nav-links">
-                <a href="/index" class="active">Home</a>
-                <a href="/project">Projects</a>
-                <a href="/about">About</a>
-                <a href="/contact">Contact</a>
-            </div>
-            
-            <div class="cd-player-widget">
-                <audio id="portfolio-audio" src="assets/audio/Goldeneye Pause music.mp3" loop></audio>
-                <div class="cd-deck">
-                    <div id="cd-disc" class="disc-media">
-                        <div class="disc-center-hole"></div>
-                    </div>
-                </div>
-                <div class="cd-metadata">
-                    <div class="track-marquee"><span id="track-title-text">GOLDENEYE // PAUSE DECK</span></div>
-                    <div class="cd-controls">
-                        <button id="audio-toggle-btn" class="cd-control-btn">// PLAY INTERCEPT</button>
-                        <span id="cd-status-light" class="status-indicator"></span>
-                    </div>
+        <nav style="flex-direction: column; align-items: flex-start; gap: 15px;">
+    <div style="display: flex; justify-content: space-between; width: 100%; align-items: center; border-bottom: 1px dashed rgba(255,204,0,0.3); padding-bottom: 12px;">
+        <div class="time-stamp">MAIN PAGE</div>
+    </div>
+    <div style="display: flex; justify-content: space-between; width: 100%; align-items: center; flex-wrap: wrap; gap: 15px;">
+        <div class="nav-links">
+            <a href="/index" class="active">Home</a>
+            <a href="/project">Projects</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+        </div>
+        
+        <div class="cd-player-widget">
+            <audio id="portfolio-audio" src="assets/audio/Goldeneye Pause music.mp3" loop></audio>
+            <div class="cd-deck"><div id="cd-disc" class="disc-media"><div class="disc-center-hole"></div></div></div>
+            <div class="cd-metadata">
+                <div class="track-marquee"><span id="track-title-text">GOLDENEYE // PAUSE DECK</span></div>
+                <div class="cd-controls">
+                    <button id="audio-toggle-btn" class="cd-control-btn">// PLAY INTERCEPT</button>
+                    <span id="cd-status-light" class="status-indicator"></span>
                 </div>
             </div>
-        </nav>
+        </div>
+    </div>
+</nav>
 
         <section class="hero-section">
     

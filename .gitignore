@@ -1,6 +1,3 @@
-# =================================================================
-# VARAD PORTFOLIO REPOSITORY GATEWAY SECURITY MATRIX (.gitignore)
-# =================================================================
 
 # 📁 GLOBAL MEDIA & AUDIO LOCKS
 # [PRODUCTION REMARK]: Audio blocks have been entirely removed 
@@ -12,6 +9,7 @@ node_modules/
 jspm_packages/
 .pnpm-store/
 .yarn/
+package.json
 package-lock.json
 yarn.lock
 pnpm-lock.yaml

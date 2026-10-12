@@ -1,0 +1,25 @@
+{
+  "name": "creative-animation-site",
+  "version": "1.0.0",
+  "description": "A high-contrast, performance-tuned web terminal architecture engineered to serve as a low-overhead visual deployment and technical repository matrix showcase. This interface eliminates bulky tracking frameworks in favor of direct DOM manipulation paths, synchronized layout audio widgets, and native hardware-accelerated video tracking layers.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/varaddongare-dev/developer-portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/varaddongare-dev/developer-portfolio/issues"
+  },
+  "homepage": "https://github.com/varaddongare-dev/developer-portfolio#readme",
+  "devDependencies": {
+    "vite": "^8.3.4"
+  }
+}
