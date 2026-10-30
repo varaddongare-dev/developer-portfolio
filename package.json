@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/varaddongare-dev/developer-portfolio#readme",
   "devDependencies": {
+    "@vercel/speed-insights": "^2.0.0",
     "vite": "^8.3.4"
   }
 }
